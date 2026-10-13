@@ -1,0 +1,6 @@
+{
+  "name": "2026 당근 SRE Day 멀티모달 요약기",
+  "description": "2026 당근 빌더 밋업 SRE Day 플레이리스트(PLVJW6xP-wT5Q)의 9개 세션 화면(슬라이드·아키텍처·코드) 및 음성(발표·트러블슈팅) 통합 심층 요약 & AI 질의응답 대시보드",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
