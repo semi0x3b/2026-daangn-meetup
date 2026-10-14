@@ -35,7 +35,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
   const publicUrl = getPublicShareUrl();
 
   const slackText = `[2026 당근 SRE Day 플레이북·9개 세션 요약]
-대규모 트래픽을 지탱하는 당근 SRE/플랫폼 엔지니어들의 9개 세션 전체 녹취록, 슬라이드 화면 분석, 마스터 아키텍처 토폴로지 대시보드입니다.
+당근 SRE/플랫폼 엔지니어 9개 세션의 녹취록, 슬라이드 분석, 아키텍처 구성도를 정리한 대시보드입니다.
 
 바로가기: ${publicUrl}
 • 주요 내용: CI 캐시 99.4%, AI Agent MCP 배포, Karpenter v1.0, TPU 슬라이스 최적화, Grafana 대체 AI 옵저버빌리티, eBPF 커널 계측, OIDC 정적 키 제거, Valkey 8.0 마이그레이션, GitHub EMU`;
@@ -128,7 +128,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
           <div className="space-y-2">
             <label className="text-xs font-semibold text-slate-400 flex items-center gap-1.5">
               <Globe className="w-4 h-4 text-orange-400" />
-              정식 공개 웹 애플리케이션 링크 (개발용 ais-dev- ➔ 공개형 ais-pre- 자동 변환)
+              {IS_STATIC_SITE ? '공개 링크' : '정식 공개 웹 애플리케이션 링크 (개발용 ais-dev- ➔ 공개형 ais-pre- 자동 변환)'}
             </label>
             <div className="flex items-center gap-2">
               <input
@@ -164,7 +164,9 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
               </a>
             </div>
             <p className="text-[11px] text-slate-500">
-              * 동일한 Google Workspace 조직 권한을 가진 팀원은 위 링크로 바로 브라우저에서 접속할 수 있습니다.
+              {IS_STATIC_SITE
+                ? '* 로그인 없이 누구나 위 링크로 접속할 수 있습니다.'
+                : '* 동일한 Google Workspace 조직 권한을 가진 팀원은 위 링크로 바로 브라우저에서 접속할 수 있습니다.'}
             </p>
           </div>
 
