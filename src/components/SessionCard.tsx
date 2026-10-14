@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, Monitor, Mic, Clock, Eye, Sparkles, ChevronRight, ExternalLink, Layers } from 'lucide-react';
 import { SessionData } from '../data/playlistData.ts';
+import { AI_ENABLED } from '../utils/urlHelper.ts';
 
 interface SessionCardProps {
   session: SessionData;
@@ -121,13 +122,15 @@ export const SessionCard: React.FC<SessionCardProps> = ({ session, onSelect, onS
             <ChevronRight className="w-4 h-4" />
           </button>
 
-          <button
-            onClick={() => onQuickAsk(session, session.recommendedQuestions[0])}
-            className="p-2.5 text-slate-400 hover:text-orange-400 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer border border-transparent hover:border-slate-700"
-            title="이 세션에 대해 AI에게 물어보기"
-          >
-            <Sparkles className="w-4 h-4 text-orange-400" />
-          </button>
+          {AI_ENABLED && (
+            <button
+              onClick={() => onQuickAsk(session, session.recommendedQuestions[0])}
+              className="p-2.5 text-slate-400 hover:text-orange-400 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer border border-transparent hover:border-slate-700"
+              title="이 세션에 대해 AI에게 물어보기"
+            >
+              <Sparkles className="w-4 h-4 text-orange-400" />
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -32,6 +32,7 @@ import { MasterArchitectureDiagram } from './components/MasterArchitectureDiagra
 import { ShareModal } from './components/ShareModal.tsx';
 import { SESSIONS_DATA, PLAYLIST_INFO, SessionData } from './data/playlistData.ts';
 import { downloadStandaloneHtmlReport } from './utils/exportHtmlHelper.ts';
+import { AI_ENABLED } from './utils/urlHelper.ts';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
@@ -164,17 +165,19 @@ export default function App() {
                 <span>공개 링크 공유</span>
               </button>
 
-              <button
-                onClick={() => {
-                  setChatSession(null);
-                  setChatInitialQuestion('우리 회사 인프라에 가장 먼저 도입해볼 만한 당근 SRE의 Quick-Win 액션 3가지를 추천해줘.');
-                  setIsChatOpen(true);
-                }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white text-sm font-semibold border border-slate-700 transition-colors cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4 text-orange-400" />
-                <span>AI 아키텍트 맞춤 질의</span>
-              </button>
+              {AI_ENABLED && (
+                <button
+                  onClick={() => {
+                    setChatSession(null);
+                    setChatInitialQuestion('우리 회사 인프라에 가장 먼저 도입해볼 만한 당근 SRE의 Quick-Win 액션 3가지를 추천해줘.');
+                    setIsChatOpen(true);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white text-sm font-semibold border border-slate-700 transition-colors cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-orange-400" />
+                  <span>AI 아키텍트 맞춤 질의</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

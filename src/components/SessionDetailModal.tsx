@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { SessionData, VideoTimestamp } from '../data/playlistData.ts';
 import { SessionArchitectureDiagram } from './SessionArchitectureDiagram.tsx';
+import { AI_ENABLED } from '../utils/urlHelper.ts';
 
 interface SessionDetailModalProps {
   session: SessionData | null;
@@ -519,24 +520,26 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
           )}
 
           {/* Recommended Questions Section */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3.5">
-            <div className="flex items-center gap-2 text-orange-400 font-bold text-sm uppercase tracking-wider">
-              <Sparkles className="w-4 h-4" />
-              <span>AI 아키텍트에게 이 세션 심층 질문하기</span>
+          {AI_ENABLED && (
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3.5">
+              <div className="flex items-center gap-2 text-orange-400 font-bold text-sm uppercase tracking-wider">
+                <Sparkles className="w-4 h-4" />
+                <span>AI 아키텍트에게 이 세션 심층 질문하기</span>
+              </div>
+              <div className="grid grid-cols-1 gap-2.5">
+                {session.recommendedQuestions.map((q, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => onAskQuestion(session, q)}
+                    className="flex items-center justify-between p-3.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-orange-500/50 text-left text-sm sm:text-base text-slate-200 hover:text-white transition-all cursor-pointer group"
+                  >
+                    <span className="leading-snug break-keep pr-2">{q}</span>
+                    <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400 shrink-0 ml-2" />
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 gap-2.5">
-              {session.recommendedQuestions.map((q, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => onAskQuestion(session, q)}
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 hover:border-orange-500/50 text-left text-sm sm:text-base text-slate-200 hover:text-white transition-all cursor-pointer group"
-                >
-                  <span className="leading-snug break-keep pr-2">{q}</span>
-                  <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400 shrink-0 ml-2" />
-                </button>
-              ))}
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Modal Footer */}
