@@ -17,7 +17,7 @@ import {
   ChevronRight,
   AlertCircle
 } from 'lucide-react';
-import { ADOPTION_TRACKS } from '../data/adoptionPlaybookData.ts';
+import { ADOPTION_TRACKS, getTrackLabel, getTrackSessions, getVideoTitle } from '../data/adoptionPlaybookData.ts';
 import { downloadStandaloneHtmlReport } from '../utils/exportHtmlHelper.ts';
 
 interface AdoptionPlaybookModalProps {
@@ -38,6 +38,8 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
 
   const tracks = ADOPTION_TRACKS;
   const currentTrack = tracks.find((t) => t.id === activeTrack) || tracks[0];
+  const currentSessions = getTrackSessions(currentTrack);
+  const currentVideoTitles = currentSessions.map(getVideoTitle).join(', ');
 
   const handleCopyCode = (id: string, code: string) => {
     navigator.clipboard.writeText(code);
@@ -94,7 +96,7 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'
               }`}
             >
-              <span className="leading-snug break-keep text-sm font-bold text-white">{t.title.split('. ')[1]}</span>
+              <span className="leading-snug break-keep text-sm font-bold text-white">{getTrackLabel(t)}</span>
               <span className="text-xs text-slate-400 font-mono">{t.difficulty}</span>
             </button>
           ))}
@@ -104,15 +106,15 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
         <div className="flex-1 overflow-y-auto p-5 sm:p-7 space-y-6 bg-slate-950/30">
           {/* Track Summary Banner */}
           <div className="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3.5">
-            <div className="flex flex-wrap items-center justify-between gap-2.5">
-              <div className="flex items-center gap-2.5">
-                <span className={`text-sm font-bold px-3 py-1 rounded-xl border ${currentTrack.color || 'text-orange-400 bg-orange-500/10 border-orange-500/30'}`}>
-                  {currentTrack.title}
-                </span>
-                <span className="text-sm text-slate-300">난이도: <strong className="text-white font-bold">{currentTrack.difficulty}</strong></span>
-              </div>
-              <span className="text-xs sm:text-sm text-slate-400">{currentTrack.sessions}</span>
-            </div>
+            <ul className="space-y-1.5">
+              {currentSessions.map((session) => (
+                <li key={session.id} className="text-sm font-bold text-white leading-snug break-keep">
+                  <span className="text-orange-400 mr-1.5">세션 {session.index}</span>
+                  {getVideoTitle(session)}
+                </li>
+              ))}
+            </ul>
+            <span className="block text-sm text-slate-300">난이도: <strong className="text-white font-bold">{currentTrack.difficulty}</strong></span>
             <p className="text-base font-semibold text-white leading-relaxed">
               {currentTrack.summary}
             </p>
@@ -183,12 +185,12 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
             <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
                 <div className="text-xs font-bold text-orange-400">우리 회사 환경 맞춤 컨설팅이 필요한가요?</div>
-                <div className="text-[11px] text-slate-400">"{currentTrack.title}" 도입 시 주의해야 할 사전 제약 사항 질문하기</div>
+                <div className="text-[11px] text-slate-400">{getTrackLabel(currentTrack)} 내용 도입 시 주의해야 할 사전 제약 사항 질문하기</div>
               </div>
               <button
                 onClick={() => {
                   onClose();
-                  onOpenChatWithTopic(`우리 회사 인프라에 ${currentTrack.title}을 도입하려고 해. 현재 우리가 사전 점검해야 할 필수 전제 조건과 점진적 마이그레이션 팁을 알려줘.`);
+                  onOpenChatWithTopic(`우리 회사 인프라에 '${currentVideoTitles}' 세션 내용을 도입하려고 해. 현재 우리가 사전 점검해야 할 필수 전제 조건과 점진적 마이그레이션 팁을 알려줘.`);
                 }}
                 className="px-3.5 py-2 bg-orange-600 hover:bg-orange-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
               >
