@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { SessionData, VideoTimestamp } from '../data/playlistData.ts';
 import { SessionArchitectureDiagram } from './SessionArchitectureDiagram.tsx';
+import { AI_ENABLED } from '../utils/urlHelper.ts';
 
 interface SessionDetailModalProps {
   session: SessionData | null;
@@ -435,24 +436,26 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
           )}
 
           {/* Recommended Questions Section */}
-          <div className="bg-gradient-to-r from-orange-950/30 via-amber-950/20 to-slate-950 border border-orange-800/40 rounded-xl p-4 sm:p-5">
-            <div className="flex items-center gap-2 text-orange-400 font-bold text-xs uppercase tracking-wider mb-3">
-              <Sparkles className="w-4 h-4" />
-              <span>AI 아키텍트에게 이 세션 심층 질문하기</span>
+          {AI_ENABLED && (
+            <div className="bg-gradient-to-r from-orange-950/30 via-amber-950/20 to-slate-950 border border-orange-800/40 rounded-xl p-4 sm:p-5">
+              <div className="flex items-center gap-2 text-orange-400 font-bold text-xs uppercase tracking-wider mb-3">
+                <Sparkles className="w-4 h-4" />
+                <span>AI 아키텍트에게 이 세션 심층 질문하기</span>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                {session.recommendedQuestions.map((q, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => onAskQuestion(session, q)}
+                    className="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 hover:bg-orange-600/20 border border-slate-800 hover:border-orange-500/40 text-left text-xs sm:text-sm text-slate-200 hover:text-white transition-all cursor-pointer group"
+                  >
+                    <span className="line-clamp-1">{q}</span>
+                    <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400 shrink-0 ml-2" />
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 gap-2">
-              {session.recommendedQuestions.map((q, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => onAskQuestion(session, q)}
-                  className="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 hover:bg-orange-600/20 border border-slate-800 hover:border-orange-500/40 text-left text-xs sm:text-sm text-slate-200 hover:text-white transition-all cursor-pointer group"
-                >
-                  <span className="line-clamp-1">{q}</span>
-                  <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400 shrink-0 ml-2" />
-                </button>
-              ))}
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Modal Footer */}
