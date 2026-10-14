@@ -1,7 +1,14 @@
 import { SESSIONS_DATA, PLAYLIST_INFO } from '../data/playlistData.ts';
 import { SESSION_ARCHITECTURES, SessionArchitecture } from '../data/sessionArchitectureData.ts';
 import { NODE_DETAIL_SPECS, NodeDetailSpec } from '../data/nodeDetailSpecs.ts';
-import { ADOPTION_TRACKS, QUANTITATIVE_METRICS, FAQ_KNOWLEDGE_BASE } from '../data/adoptionPlaybookData.ts';
+import {
+  ADOPTION_TRACKS,
+  QUANTITATIVE_METRICS,
+  FAQ_KNOWLEDGE_BASE,
+  getTrackLabel,
+  getTrackSessions,
+  getVideoTitle,
+} from '../data/adoptionPlaybookData.ts';
 
 function escapeHtml(str: string): string {
   if (!str) return '';
@@ -208,9 +215,10 @@ export function generateStandaloneHtmlReport(): string {
       <div class="playbook-track-pane ${isFirst ? 'active' : ''}" id="pb-pane-${track.id}">
         <div class="track-pane-header">
           <div class="track-header-top">
-            <span class="badge badge-accent">${escapeHtml(track.title)}</span>
+            ${getTrackSessions(track)
+              .map((session) => `<span class="badge badge-accent">세션 ${session.index}. ${escapeHtml(getVideoTitle(session))}</span>`)
+              .join('')}
             <span class="badge badge-secondary">난이도: <strong>${escapeHtml(track.difficulty)}</strong></span>
-            <span class="badge badge-secondary">${escapeHtml(track.sessions)}</span>
           </div>
           <p class="track-summary-text">${escapeHtml(track.summary)}</p>
         </div>
@@ -239,7 +247,7 @@ export function generateStandaloneHtmlReport(): string {
   const playbookNavTabs = ADOPTION_TRACKS.map(
     (t, idx) => `
     <button class="pb-tab-btn ${idx === 0 ? 'active' : ''}" id="pb-btn-${t.id}" onclick="switchPlaybookTrack('${t.id}')">
-      <span class="pb-tab-title">${escapeHtml(t.shortTitle)}</span>
+      <span class="pb-tab-title">${escapeHtml(getTrackLabel(t))}</span>
       <span class="pb-tab-sub">${escapeHtml(t.difficulty)}</span>
     </button>
   `
@@ -287,7 +295,7 @@ export function generateStandaloneHtmlReport(): string {
       </td>
       <td class="col-title">
         <a href="#${m.sessionId}" class="table-title-link">
-          <strong>${escapeHtml(m.sessionTitle)}</strong>
+          <strong>${escapeHtml(getVideoTitle(SESSIONS_DATA.find((session) => session.id === m.sessionId)!))}</strong>
         </a>
       </td>
       <td class="col-metric font-semibold">${escapeHtml(m.metricName)}</td>

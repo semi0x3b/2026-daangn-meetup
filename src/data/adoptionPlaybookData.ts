@@ -1,3 +1,5 @@
+import { SESSIONS_DATA, SessionData } from './playlistData.ts';
+
 export interface PlaybookStep {
   phase: string;
   action: string;
@@ -6,11 +8,8 @@ export interface PlaybookStep {
 
 export interface PlaybookTrack {
   id: string;
-  title: string;
-  shortTitle: string;
-  sessions: string;
+  sessionIds: string[];
   iconName: string;
-  color?: string;
   difficulty: string;
   summary: string;
   whatDaangnDid: string[];
@@ -20,7 +19,6 @@ export interface PlaybookTrack {
 export interface MetricComparison {
   sessionId: string;
   sessionIndex: number;
-  sessionTitle: string;
   metricName: string;
   before: string;
   after: string;
@@ -36,12 +34,20 @@ export interface FaqItem {
   relatedSession: string;
 }
 
+/** Video title as published, minus the playlist suffix every video shares. */
+export const getVideoTitle = (session: SessionData) => session.title.replace(/ \| 2026 당근 빌더 밋업$/, '');
+
+export const getTrackSessions = (track: PlaybookTrack) =>
+  SESSIONS_DATA.filter((session) => track.sessionIds.includes(session.id));
+
+/** e.g. "세션 5·6" */
+export const getTrackLabel = (track: PlaybookTrack) =>
+  `세션 ${getTrackSessions(track).map((session) => session.index).join('·')}`;
+
 export const ADOPTION_TRACKS: PlaybookTrack[] = [
   {
     id: 'track-1',
-    title: '트랙 1. CI/CD & 배포 속도 극대화',
-    shortTitle: 'CI/CD 속도 & MCP 배포',
-    sessions: '세션 1 (CI 캐시 99.4%) & 세션 2 (MCP 배포 가드레일)',
+    sessionIds: ['session-1', 'session-2'],
     iconName: 'Terminal',
     difficulty: '중간 (1~2주)',
     summary: '개발자 피드백 루프를 1/5로 단축하고 AI 코딩 시대의 배포 병목을 안전하게 해소하는 엔지니어링 파이프라인 구축',
@@ -94,9 +100,7 @@ export const deployCanaryTool = {
   },
   {
     id: 'track-2',
-    title: '트랙 2. Kubernetes 컴퓨팅 & 가속기 최적화',
-    shortTitle: 'K8s Karpenter & TPU/GPU',
-    sessions: '세션 3 (Karpenter EKS 비용 절감) & 세션 4 (TPU/GPU 가동률 극대화)',
+    sessionIds: ['session-3', 'session-4'],
     iconName: 'Cpu',
     difficulty: '중상 (2~3주)',
     summary: 'ASG 종속성을 끊고 즉각적인 인스턴스 빈패킹으로 클라우드 인프라 비용 25~30% 절감 및 가속기 가동률 82% 달성',
@@ -153,9 +157,7 @@ export XLA_FLAGS="--xla_gpu_enable_latency_hiding_scheduler=true"
   },
   {
     id: 'track-3',
-    title: '트랙 3. 관측성과 eBPF',
-    shortTitle: 'AI 옵저버빌리티 & eBPF',
-    sessions: '세션 5 (Grafana 걷어낸 에이전트 얼럿) & 세션 6 (eBPF 커널 계측)',
+    sessionIds: ['session-5', 'session-6'],
     iconName: 'Layers',
     difficulty: '중간 (1~2주)',
     summary: '800개 대시보드의 알림 피로도를 없애고, 지나간 간헐적 유령 장애 원인을 0.3% 오버헤드로 추적',
@@ -208,9 +210,7 @@ spec:
   },
   {
     id: 'track-4',
-    title: '트랙 4. 보안, 스토리지 & 엔터프라이즈 거버넌스',
-    shortTitle: 'OIDC 보안 & Valkey & EMU',
-    sessions: '세션 7 (OIDC 키 제거), 세션 8 (Valkey 전환), 세션 9 (GitHub EMU 이관)',
+    sessionIds: ['session-7', 'session-8', 'session-9'],
     iconName: 'ShieldCheck',
     difficulty: '낮음~중간 (즉시 적용 가능)',
     summary: 'AWS 정적 키 100% 제거, 오픈소스 Valkey 8.0 무중단 표준화, 사내 IdP 계정 수명주기 자동화',
@@ -255,7 +255,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-1',
     sessionIndex: 1,
-    sessionTitle: '초고속 CI 캐싱 파이프라인',
     metricName: 'CI 빌드 시간',
     before: '14분 12초',
     after: '2분 08초',
@@ -265,7 +264,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-2',
     sessionIndex: 2,
-    sessionTitle: 'MCP 기반 AI 코딩 배포 가드레일',
     metricName: '배포 소요 시간 및 사고율',
     before: '12분 (수동 승인)',
     after: '3분 (자동 SLO 가드레일)',
@@ -275,7 +273,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-3',
     sessionIndex: 3,
-    sessionTitle: 'Karpenter 기반 EKS 대규모 비용 절감',
     metricName: '노드 프로비저닝 속도 & 클라우드 비용',
     before: '180초 (ASG 45개)',
     after: '35초 (단일 NodePool)',
@@ -285,7 +282,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-4',
     sessionIndex: 4,
-    sessionTitle: 'TPU v5e 동적 파티셔닝 & AI 추론 최적화',
     metricName: '가속기 자원 가동률 (Utilization)',
     before: '38% (단일 고정 할당)',
     after: '82% (주간 추론 ↔ 야간 배치)',
@@ -295,7 +291,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-5',
     sessionIndex: 5,
-    sessionTitle: 'Grafana 대시보드 없는 AI 에이전트 장애 분석',
     metricName: '평균 장애 인지 및 복구 시간 (MTTR)',
     before: '45분 (800개 대시보드 수동 조사)',
     after: '8분 (LLM 에이전트 자동 원인 규명)',
@@ -305,7 +300,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-6',
     sessionIndex: 6,
-    sessionTitle: 'eBPF 커널 레벨 네트워크 심층 모니터링',
     metricName: '간헐적 504 통신 장애 규명률 & 계측 오버헤드',
     before: '규명 불가 (APM 암전)',
     after: '원인 100% 규명 (TCP 재전송/conntrack)',
@@ -315,7 +309,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-7',
     sessionIndex: 7,
-    sessionTitle: 'GitHub Actions OIDC 기반 제로 시크릿 전환',
     metricName: 'AWS 영구 IAM 정적 시크릿 키 개수',
     before: '450개 레포 하드코딩 키',
     after: '0개 (완전 제거)',
@@ -325,7 +318,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-8',
     sessionIndex: 8,
-    sessionTitle: 'Redis 라이선스 변경 대응 Valkey 8.0 무중단 전환',
     metricName: '마이그레이션 다운타임 & 캐시 처리량',
     before: '점검 다운타임 필요 (수 분)',
     after: '0초 다운타임 (무중단 페일오버)',
@@ -335,7 +327,6 @@ export const QUANTITATIVE_METRICS: MetricComparison[] = [
   {
     sessionId: 'session-9',
     sessionIndex: 9,
-    sessionTitle: 'GitHub Enterprise Managed Users(EMU) 전사 이관',
     metricName: '퇴사자 권한 회수 소요 시간 & 누락률',
     before: '수동 회수 (누락 위험 존재)',
     after: '1초 미만 (IdP SCIM 자동 회수)',
