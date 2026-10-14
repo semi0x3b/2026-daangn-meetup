@@ -194,28 +194,28 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
         </div>
 
         {/* View Switcher Tabs */}
-        <div className="flex items-center px-4 bg-slate-950 border-b border-slate-800 gap-2">
+        <div className="flex items-center px-4 sm:px-6 bg-slate-950 border-b border-slate-800 gap-2">
           <button
             onClick={() => setViewTab('markdown')}
-            className={`flex items-center gap-1.5 py-2.5 px-3 text-xs font-semibold border-b-2 transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 py-3 px-4 text-sm font-bold border-b-2 transition-colors cursor-pointer ${
               viewTab === 'markdown'
-                ? 'border-orange-500 text-orange-400 bg-orange-950/20'
+                ? 'border-orange-500 text-orange-400 bg-orange-500/10'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
-            <FileText className="w-3.5 h-3.5" />
+            <FileText className="w-4 h-4" />
             <span>📄 리포트 형식 뷰 (코드 & 트러블슈팅 전문)</span>
           </button>
 
           <button
             onClick={() => setViewTab('json')}
-            className={`flex items-center gap-1.5 py-2.5 px-3 text-xs font-semibold border-b-2 transition-colors cursor-pointer ${
+            className={`flex items-center gap-2 py-3 px-4 text-sm font-bold border-b-2 transition-colors cursor-pointer ${
               viewTab === 'json'
-                ? 'border-cyan-500 text-cyan-400 bg-cyan-950/20'
+                ? 'border-orange-500 text-orange-400 bg-orange-500/10'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Code2 className="w-3.5 h-3.5" />
+            <Code2 className="w-4 h-4" />
             <span>📦 전체 JSON 로우 데이터</span>
           </button>
         </div>
@@ -224,22 +224,22 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 bg-slate-950/40">
           {viewTab === 'json' ? (
             <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs text-slate-400 bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+              <div className="flex items-center justify-between text-sm text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800">
                 <span>총 9개 세션의 화면(Screen), 음성(Audio), 타임스탬프, 코드 스니펫 원본 JSON 트리</span>
-                <span className="text-cyan-400 font-mono text-[11px]">{SESSIONS_DATA.length} items</span>
+                <span className="text-orange-400 font-mono text-xs font-bold bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/30">{SESSIONS_DATA.length} items</span>
               </div>
-              <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-300/90 overflow-x-auto leading-relaxed max-h-[65vh] select-all">
+              <pre className="p-5 rounded-2xl bg-slate-950 border border-slate-800 text-xs sm:text-sm font-mono text-slate-200 overflow-x-auto leading-relaxed max-h-[65vh] select-all">
                 <code>{jsonString}</code>
               </pre>
             </div>
           ) : (
             <>
-              <div className="p-4 rounded-xl bg-gradient-to-r from-orange-950/40 via-slate-900 to-emerald-950/30 border border-orange-500/30 text-xs text-slate-300 leading-relaxed space-y-1">
-                <div className="flex items-center gap-2 font-bold text-orange-300">
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 text-sm text-slate-200 leading-relaxed space-y-1.5 shadow-md">
+                <div className="flex items-center gap-2 font-bold text-white text-base">
                   <Sparkles className="w-4 h-4 text-orange-400" />
                   <span>2026 당근 빌더 밋업 SRE Day 9개 세션 전문 무생략 리포트</span>
                 </div>
-                <p className="text-slate-300 text-[11px]">
+                <p className="text-slate-300 text-sm">
                   코드 스니펫, 트러블슈팅 스토리, 음성 녹취 스크립트 등 모든 텍스트가 줄임표(...) 없이 100% 완전하게 출력됩니다. 상단의 <strong>[HTML 파일 다운로드]</strong>를 누르면 로그인 없이 팀원과 공유 가능한 오프라인 파일을 즉시 내려받을 수 있습니다.
                 </p>
               </div>
@@ -248,79 +248,79 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                 {SESSIONS_DATA.map((s) => (
                   <div
                     key={s.id}
-                    className="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5 shadow-lg"
+                    className="p-6 sm:p-7 rounded-2xl bg-slate-900 border border-slate-800 space-y-6 shadow-xl"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-slate-800 pb-3 gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-slate-800 pb-4 gap-2.5">
                       <div>
-                        <span className="text-xs font-bold text-orange-400 mr-2">[세션 {s.index}]</span>
-                        <h4 className="text-base font-bold text-white inline">{s.title}</h4>
+                        <span className="text-sm font-bold text-orange-400 mr-2.5">[세션 {s.index}]</span>
+                        <h4 className="text-lg sm:text-xl font-bold text-white inline">{s.title}</h4>
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-slate-400 shrink-0">
-                        <span className="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-[11px]">
+                      <div className="flex items-center gap-3 text-sm text-slate-400 shrink-0">
+                        <span className="px-3 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 text-xs font-semibold">
                           {s.category}
                         </span>
-                        <span>{s.duration}</span>
+                        <span className="font-mono text-slate-300">{s.duration}</span>
                       </div>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-slate-200 leading-relaxed">
-                      <strong className="text-orange-400 block mb-1">📌 핵심 아키텍처 및 개요:</strong>
+                    <div className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 text-sm sm:text-base text-slate-200 leading-relaxed">
+                      <strong className="text-orange-400 block mb-1.5 font-bold">📌 핵심 아키텍처 및 개요:</strong>
                       {s.summary}
                     </div>
 
                     {/* Dual Screen & Audio Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                       {/* Screen */}
-                      <div className="p-4 rounded-xl bg-cyan-950/15 border border-cyan-800/40 space-y-3">
-                        <div className="text-xs font-bold text-cyan-300 flex items-center justify-between">
+                      <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3.5">
+                        <div className="text-sm font-bold text-white flex items-center justify-between">
                           <span>🖥️ 슬라이드 화면(Visual) 분석</span>
-                          <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
+                          <span className="text-xs font-mono text-orange-400 bg-orange-950/40 px-2.5 py-1 rounded-md border border-orange-800/60">
                             Slide & Code
                           </span>
                         </div>
-                        <div className="text-xs font-bold text-white">{s.screenAnalysis.headline}</div>
-                        <p className="text-xs text-slate-300 leading-relaxed">
+                        <div className="text-base font-bold text-slate-100">{s.screenAnalysis.headline}</div>
+                        <p className="text-sm text-slate-300 leading-relaxed">
                           {s.screenAnalysis.diagramDescription}
                         </p>
 
                         {/* Full Code Snippet (NO Truncation) */}
                         {s.screenAnalysis.codeSnippet && (
-                          <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 mt-2">
-                            <div className="flex items-center justify-between px-3 py-2 bg-slate-900/90 border-b border-slate-800 text-[11px]">
-                              <div className="flex items-center gap-1.5 text-slate-300 font-mono">
-                                <Code2 className="w-3.5 h-3.5 text-cyan-400" />
+                          <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-900 mt-3">
+                            <div className="flex items-center justify-between px-4 py-2.5 bg-slate-800/80 border-b border-slate-700 text-xs">
+                              <div className="flex items-center gap-2 text-slate-200 font-mono font-semibold">
+                                <Code2 className="w-4 h-4 text-orange-400" />
                                 <span>{s.screenAnalysis.codeSnippet.title}</span>
                               </div>
                               <button
                                 onClick={() => handleCopyCodeSnippet(s.screenAnalysis.codeSnippet!.code, s.id)}
-                                className="flex items-center gap-1 text-[10px] text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 transition-colors cursor-pointer"
+                                className="flex items-center gap-1.5 text-xs text-slate-300 hover:text-white px-2.5 py-1 rounded bg-slate-700 hover:bg-slate-600 transition-colors cursor-pointer"
                               >
                                 {copiedCodeId === s.id ? (
                                   <>
-                                    <Check className="w-3 h-3 text-emerald-400" />
+                                    <Check className="w-3.5 h-3.5 text-emerald-400" />
                                     <span className="text-emerald-400 font-semibold">복사됨</span>
                                   </>
                                 ) : (
                                   <>
-                                    <Copy className="w-3 h-3" />
+                                    <Copy className="w-3.5 h-3.5" />
                                     <span>코드 전체 복사</span>
                                   </>
                                 )}
                               </button>
                             </div>
-                            <pre className="p-3.5 text-xs font-mono text-cyan-200/90 overflow-x-auto leading-relaxed max-h-72 whitespace-pre">
+                            <pre className="p-4 text-xs sm:text-sm font-mono text-slate-200 overflow-x-auto leading-relaxed max-h-80 whitespace-pre">
                               <code>{s.screenAnalysis.codeSnippet.code}</code>
                             </pre>
                           </div>
                         )}
 
                         {/* Visual Highlights */}
-                        <div className="pt-2 border-t border-cyan-950 space-y-1.5">
-                          <span className="text-[11px] font-bold text-cyan-400 uppercase block">주목해야 할 시각 지표:</span>
-                          <ul className="space-y-1 text-xs text-slate-300">
+                        <div className="pt-3 border-t border-slate-800 space-y-2">
+                          <span className="text-xs font-bold text-slate-300 uppercase block tracking-wider font-mono">주목해야 할 시각 지표:</span>
+                          <ul className="space-y-2 text-sm text-slate-200">
                             {s.screenAnalysis.visualHighlights.map((vh, i) => (
-                              <li key={i} className="flex items-start gap-1.5">
-                                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0" />
+                              <li key={i} className="flex items-start gap-2.5">
+                                <span className="w-2 h-2 rounded-full bg-orange-400 mt-2 shrink-0" />
                                 <span>{vh}</span>
                               </li>
                             ))}
@@ -329,52 +329,52 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                       </div>
 
                       {/* Audio */}
-                      <div className="p-4 rounded-xl bg-amber-950/15 border border-amber-800/40 space-y-3">
-                        <div className="text-xs font-bold text-amber-300 flex items-center justify-between">
+                      <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3.5">
+                        <div className="text-sm font-bold text-white flex items-center justify-between">
                           <span>🎙️ 발표자 음성(Audio) 인사이트</span>
-                          <span className="text-[10px] font-mono text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">
+                          <span className="text-xs font-mono text-orange-400 bg-orange-950/40 px-2.5 py-1 rounded-md border border-orange-800/60">
                             Spoken Context
                           </span>
                         </div>
-                        <div className="text-xs font-bold text-white">{s.audioAnalysis.headline}</div>
-                        <p className="text-xs text-slate-300 leading-relaxed">
+                        <div className="text-base font-bold text-slate-100">{s.audioAnalysis.headline}</div>
+                        <p className="text-sm text-slate-300 leading-relaxed">
                           {s.audioAnalysis.spokenContext}
                         </p>
 
                         {/* Full Troubleshooting Story (NO Truncation) */}
-                        <div className="p-3.5 rounded-xl bg-slate-950 border border-amber-900/40 space-y-1.5">
-                          <span className="text-[11px] font-bold text-amber-300 flex items-center gap-1.5">
+                        <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                          <span className="text-xs font-bold text-orange-400 flex items-center gap-1.5 uppercase font-mono tracking-wider">
                             <span>🛠️ 현장 트러블슈팅 스토리 (전문)</span>
                           </span>
-                          <p className="text-xs text-amber-200/90 leading-relaxed whitespace-pre-line">
+                          <p className="text-sm text-slate-200 leading-relaxed whitespace-pre-line">
                             {s.audioAnalysis.troubleshootingStory}
                           </p>
                         </div>
 
                         {/* Speaker Advice */}
-                        <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-slate-300">
-                          <strong className="text-amber-400 block mb-1">💡 발표자 실전 조언:</strong>
-                          <p className="italic text-slate-200">"{s.audioAnalysis.speakerAdvice}"</p>
+                        <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm text-slate-200">
+                          <strong className="text-orange-400 block mb-1 font-bold">💡 발표자 실전 조언:</strong>
+                          <p className="italic text-slate-100">"{s.audioAnalysis.speakerAdvice}"</p>
                         </div>
                       </div>
                     </div>
 
                     {/* Key Takeaways */}
-                    <div className="p-4 rounded-xl bg-emerald-950/15 border border-emerald-900/40 space-y-2">
-                      <div className="text-xs font-bold text-emerald-400 flex items-center justify-between">
+                    <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
+                      <div className="text-sm font-bold text-white flex flex-wrap items-center justify-between gap-2">
                         <span>🎯 실전 도입 체크리스트 (Key Takeaways)</span>
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-2">
                           {s.audioAnalysis.quantitativeResults.map((r, i) => (
                             <span
                               key={i}
-                              className="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 text-[11px] font-semibold"
+                              className="px-2.5 py-1 rounded-md bg-slate-900 text-white border border-slate-700 text-xs font-semibold"
                             >
                               ✓ {r}
                             </span>
                           ))}
                         </div>
                       </div>
-                      <ol className="space-y-1 text-xs text-slate-200 pl-4 list-decimal">
+                      <ol className="space-y-2 text-sm text-slate-200 pl-4 list-decimal">
                         {s.keyTakeaways.map((k, idx) => (
                           <li key={idx} className="leading-relaxed">
                             {k}
@@ -384,35 +384,35 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                     </div>
 
                     {/* Expandable Full Transcript */}
-                    <div className="rounded-xl border border-slate-800 bg-slate-950/80 overflow-hidden">
+                    <div className="rounded-xl border border-slate-800 bg-slate-950 overflow-hidden">
                       <button
                         onClick={() => toggleTranscript(s.id)}
-                        className="w-full flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/60 hover:bg-slate-900 transition-colors cursor-pointer"
+                        className="w-full flex items-center justify-between px-5 py-3.5 text-sm font-bold text-slate-200 hover:text-white bg-slate-900 hover:bg-slate-850 transition-colors cursor-pointer"
                       >
                         <span className="flex items-center gap-2">
-                          <FileText className="w-3.5 h-3.5 text-orange-400" />
+                          <FileText className="w-4 h-4 text-orange-400" />
                           <span>전체 음성 녹취 스크립트 전문 ({s.fullTranscript.length}개 발언 구간)</span>
                         </span>
                         {expandedTranscripts[s.id] ? (
-                          <span className="flex items-center gap-1 text-orange-400 text-[11px]">
+                          <span className="flex items-center gap-1 text-orange-400 text-xs">
                             <span>접기</span>
-                            <ChevronUp className="w-3.5 h-3.5" />
+                            <ChevronUp className="w-4 h-4" />
                           </span>
                         ) : (
-                          <span className="flex items-center gap-1 text-slate-400 text-[11px]">
+                          <span className="flex items-center gap-1 text-slate-400 text-xs">
                             <span>전체 펼치기</span>
-                            <ChevronDown className="w-3.5 h-3.5" />
+                            <ChevronDown className="w-4 h-4" />
                           </span>
                         )}
                       </button>
 
                       {expandedTranscripts[s.id] && (
-                        <div className="p-4 border-t border-slate-800 max-h-72 overflow-y-auto space-y-2.5 divide-y divide-slate-800/40">
+                        <div className="p-5 border-t border-slate-800 max-h-80 overflow-y-auto space-y-3 divide-y divide-slate-800/40">
                           {s.fullTranscript.map((t, idx) => (
-                            <div key={idx} className="pt-2 first:pt-0 flex gap-3 text-xs">
-                              <span className="font-mono text-orange-400 shrink-0 font-semibold">{t.time}</span>
+                            <div key={idx} className="pt-2.5 first:pt-0 flex gap-3 text-sm">
+                              <span className="font-mono text-orange-400 shrink-0 font-bold">[{t.time}]</span>
                               <div className="flex-1">
-                                <span className="text-slate-400 font-semibold block text-[11px]">{t.speaker}</span>
+                                <span className="text-slate-400 font-semibold block text-xs">{t.speaker}</span>
                                 <p className="text-slate-200 leading-relaxed">{t.text}</p>
                               </div>
                             </div>

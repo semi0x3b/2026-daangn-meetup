@@ -160,7 +160,7 @@ export const AiChatDrawer: React.FC<AiChatDrawerProps> = ({
             <option value="">전체 9개 세션 통합 질문</option>
             {SESSIONS_DATA.map((s) => (
               <option key={s.id} value={s.id}>
-                세션 {s.index}. {s.title.slice(0, 35)}...
+                세션 {s.index}. {s.title}
               </option>
             ))}
           </select>
@@ -238,7 +238,7 @@ export const AiChatDrawer: React.FC<AiChatDrawerProps> = ({
               <button
                 key={idx}
                 onClick={() => handleSend(q)}
-                className="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 hover:bg-orange-600/20 text-slate-300 hover:text-orange-300 border border-slate-800 hover:border-orange-500/40 transition-colors cursor-pointer truncate max-w-[280px]"
+                className="text-[11px] px-2.5 py-1 rounded-md bg-slate-900 hover:bg-orange-600/20 text-slate-300 hover:text-orange-300 border border-slate-800 hover:border-orange-500/40 transition-colors cursor-pointer text-left break-keep"
               >
                 {q}
               </button>

@@ -120,74 +120,58 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
   const getNodeIcon = (type: string) => {
     switch (type) {
       case 'client':
-        return <Activity className="w-5 h-5 text-sky-400" />;
+        return <Activity className="w-5 h-5 text-orange-400" />;
       case 'gateway':
-        return <Server className="w-5 h-5 text-violet-400" />;
+        return <Server className="w-5 h-5 text-orange-400" />;
       case 'compute':
-        return <Cpu className="w-5 h-5 text-amber-400" />;
+        return <Cpu className="w-5 h-5 text-orange-400" />;
       case 'storage':
-        return <Database className="w-5 h-5 text-emerald-400" />;
+        return <Database className="w-5 h-5 text-orange-400" />;
       case 'cache':
-        return <HardDrive className="w-5 h-5 text-cyan-400" />;
+        return <HardDrive className="w-5 h-5 text-orange-400" />;
       case 'guardrail':
       case 'security':
-        return <ShieldCheck className="w-5 h-5 text-rose-400" />;
+        return <ShieldCheck className="w-5 h-5 text-orange-400" />;
       case 'observability':
-        return <Sparkles className="w-5 h-5 text-purple-400" />;
+        return <Sparkles className="w-5 h-5 text-orange-400" />;
       default:
-        return <Box className="w-5 h-5 text-slate-400" />;
+        return <Box className="w-5 h-5 text-orange-400" />;
     }
   };
 
   const getNodeColors = (type: string, isSelected: boolean) => {
     if (isSelected) {
-      return 'bg-slate-900 border-orange-500 shadow-xl shadow-orange-500/25 ring-2 ring-orange-500/80';
+      return 'bg-slate-900 border-2 border-orange-500 shadow-xl shadow-orange-500/25 ring-2 ring-orange-500/70 text-white';
     }
-    switch (type) {
-      case 'client':
-        return 'bg-gradient-to-b from-sky-950/60 to-slate-950/90 border-sky-500/40 hover:border-sky-400 hover:shadow-lg hover:shadow-sky-500/10';
-      case 'gateway':
-        return 'bg-gradient-to-b from-violet-950/60 to-slate-950/90 border-violet-500/40 hover:border-violet-400 hover:shadow-lg hover:shadow-violet-500/10';
-      case 'compute':
-        return 'bg-gradient-to-b from-amber-950/60 to-slate-950/90 border-amber-500/40 hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/10';
-      case 'cache':
-        return 'bg-gradient-to-b from-cyan-950/60 to-slate-950/90 border-cyan-500/40 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/10';
-      case 'storage':
-        return 'bg-gradient-to-b from-emerald-950/60 to-slate-950/90 border-emerald-500/40 hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-500/10';
-      case 'guardrail':
-      case 'security':
-        return 'bg-gradient-to-b from-rose-950/60 to-slate-950/90 border-rose-500/40 hover:border-rose-400 hover:shadow-lg hover:shadow-rose-500/10';
-      default:
-        return 'bg-slate-900/90 border-slate-700 hover:border-slate-500';
-    }
+    return 'bg-slate-900/90 border border-slate-800 hover:border-slate-700 hover:bg-slate-850 text-slate-200';
   };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'optimized':
         return (
-          <span className="flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            최적화됨 (Optimized)
+          <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-md bg-orange-500/10 text-orange-400 border border-orange-500/30">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+            최적화 완료
           </span>
         );
       case 'active':
         return (
-          <span className="flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+          <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-md bg-slate-800 text-slate-200 border border-slate-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
             활성 파이프라인
           </span>
         );
       case 'monitored':
         return (
-          <span className="flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+          <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-md bg-slate-800 text-slate-200 border border-slate-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
             실시간 모니터링
           </span>
         );
       default:
         return (
-          <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">
             표준 노드
           </span>
         );
@@ -197,24 +181,24 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
   return (
     <div className="space-y-6 animate-in fade-in duration-200">
       {/* Top Header Card */}
-      <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-orange-950/50 via-slate-900 to-cyan-950/50 border border-slate-700/80 shadow-2xl">
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-orange-500/25 text-orange-300 border border-orange-500/50 shadow-sm">
+            <div className="flex flex-wrap items-center gap-2 mb-2.5">
+              <span className="px-3 py-1 rounded-lg text-xs font-bold bg-orange-500/15 text-orange-400 border border-orange-500/30">
                 세션 {session.index} 실무 인프라 아키텍처
               </span>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+              <span className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
                 {session.category}
               </span>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono text-emerald-300 bg-emerald-950/80 border border-emerald-800/80">
+              <span className="px-2.5 py-1 rounded-lg text-xs font-mono text-slate-300 bg-slate-950 border border-slate-800">
                 ✓ 9대 세션 전수 실측 완료
               </span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
               {arch.headline}
             </h3>
-            <p className="text-sm text-slate-300 mt-2 max-w-4xl leading-relaxed">
+            <p className="text-base text-slate-300 mt-2.5 max-w-4xl leading-relaxed">
               {arch.architectureSummary}
             </p>
           </div>
@@ -240,13 +224,13 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
         </div>
 
         {/* View Switcher Sub-tabs */}
-        <div className="flex flex-wrap items-center gap-2 mt-5 pt-4 border-t border-slate-800">
+        <div className="flex flex-wrap items-center gap-2.5 mt-5 pt-4 border-t border-slate-800">
           <button
             onClick={() => setActiveView('visual')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer ${
               activeView === 'visual'
-                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30 ring-1 ring-orange-400'
-                : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
+                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
+                : 'bg-slate-850 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700'
             }`}
           >
             <Layers className="w-4 h-4 text-white" />
@@ -255,10 +239,10 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
           <button
             onClick={() => setActiveView('comparison')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer ${
               activeView === 'comparison'
-                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30 ring-1 ring-orange-400'
-                : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
+                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
+                : 'bg-slate-850 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700'
             }`}
           >
             <RefreshCw className="w-4 h-4" />
@@ -267,10 +251,10 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
           <button
             onClick={() => setActiveView('pipeline')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer ${
               activeView === 'pipeline'
-                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30 ring-1 ring-orange-400'
-                : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
+                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
+                : 'bg-slate-850 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700'
             }`}
           >
             <Zap className="w-4 h-4" />
@@ -279,10 +263,10 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
           <button
             onClick={() => setActiveView('specs')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer ${
               activeView === 'specs'
-                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30 ring-1 ring-orange-400'
-                : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
+                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
+                : 'bg-slate-850 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700'
             }`}
           >
             <Cpu className="w-4 h-4" />
@@ -291,10 +275,10 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
           <button
             onClick={() => setActiveView('mermaid')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer ${
               activeView === 'mermaid'
-                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30 ring-1 ring-orange-400'
-                : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
+                ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30'
+                : 'bg-slate-850 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700'
             }`}
           >
             <Terminal className="w-4 h-4" />
@@ -307,28 +291,28 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
       {activeView === 'visual' && (
         <div className="space-y-6">
           {/* Architecture Topology Canvas */}
-          <div className="p-5 sm:p-6 rounded-3xl bg-slate-950 border-2 border-slate-800 relative overflow-hidden shadow-2xl">
+          <div className="p-5 sm:p-6 rounded-3xl bg-slate-950 border border-slate-800 relative overflow-hidden shadow-2xl">
             {/* Header with Display Controls */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-orange-500/15 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold">
                   <Layers className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-base font-extrabold text-white flex items-center gap-2">
+                  <h4 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
                     <span>당근 SRE 실전 시스템 토폴로지</span>
-                    <span className="text-xs font-normal text-orange-400 bg-orange-950/60 border border-orange-800/80 px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-semibold text-orange-400 bg-orange-500/10 border border-orange-500/30 px-2.5 py-0.5 rounded-md">
                       노드를 클릭하면 아래에 세부 스펙 표시됨
                     </span>
                   </h4>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-sm text-slate-300 mt-0.5">
                     전체 {arch.nodes.length}개 노드와 {arch.edges.length}개 데이터 흐름 경로가 실측 매핑되어 있습니다.
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+                <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 text-sm">
                   <button
                     onClick={() => setDiagramMode('flow')}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
@@ -337,7 +321,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <Workflow className="w-3.5 h-3.5" />
+                    <Workflow className="w-4 h-4" />
                     <span>플로우 연결 뷰</span>
                   </button>
                   <button
@@ -348,7 +332,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <Layers className="w-3.5 h-3.5" />
+                    <Layers className="w-4 h-4" />
                     <span>매트릭스 카드 뷰</span>
                   </button>
                 </div>
@@ -359,7 +343,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             {diagramMode === 'flow' ? (
               <div className="space-y-6">
                 {/* SVG Visual Flow Blueprint Banner */}
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-slate-800 overflow-x-auto">
+                <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 overflow-x-auto">
                   <div className="min-w-[700px] flex items-center justify-between gap-3 py-2 px-1">
                     {arch.nodes.map((node, index) => {
                       const isSelected = selectedNodeId === node.id;
@@ -371,29 +355,29 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                           {/* Node Capsule */}
                           <div
                             onClick={() => setSelectedNodeId(node.id)}
-                            className={`flex-1 min-w-[130px] p-3 rounded-2xl border-2 transition-all cursor-pointer relative group text-left ${getNodeColors(
+                            className={`flex-1 min-w-[160px] sm:min-w-[185px] p-3.5 rounded-2xl border-2 transition-all cursor-pointer relative group text-left ${getNodeColors(
                               node.type,
                               isSelected
                             )}`}
                           >
-                            <div className="flex items-center justify-between gap-1 mb-1.5">
+                            <div className="flex items-center justify-between gap-1 mb-2">
                               <span className="p-1 rounded-lg bg-slate-950/80 border border-slate-800">
                                 {getNodeIcon(node.type)}
                               </span>
-                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded uppercase font-bold bg-slate-950/90 text-slate-300 border border-slate-800">
+                              <span className="text-xs font-mono px-2 py-0.5 rounded uppercase font-bold bg-slate-950 text-slate-300 border border-slate-800">
                                 {node.type}
                               </span>
                             </div>
 
-                            <div className="text-xs font-black text-white group-hover:text-orange-400 transition-colors line-clamp-1">
+                            <div className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors leading-snug break-keep">
                               {node.label}
                             </div>
-                            <div className="text-[10px] text-slate-400 font-mono truncate">
+                            <div className="text-xs text-slate-400 font-mono break-all mt-1 leading-normal">
                               {node.sublabel}
                             </div>
 
                             {isSelected && (
-                              <div className="mt-2 text-[10px] font-bold text-orange-300 flex items-center gap-1 bg-orange-950/90 px-1.5 py-0.5 rounded border border-orange-700/60">
+                              <div className="mt-2.5 text-xs font-bold text-orange-400 flex items-center gap-1 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/30">
                                 <span>선택됨 (스펙 표시 중)</span>
                               </div>
                             )}
@@ -406,7 +390,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                                 <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-orange-400 rotate-45"></div>
                               </div>
                               {connectedEdge?.protocol && (
-                                <span className="text-[9px] font-mono text-cyan-300 bg-slate-950 px-1.5 py-0.5 rounded border border-cyan-900/60 mt-1 whitespace-nowrap">
+                                <span className="text-xs font-mono text-slate-200 bg-slate-950 px-2 py-0.5 rounded border border-slate-700 mt-1 whitespace-nowrap">
                                   {connectedEdge.protocol}
                                 </span>
                               )}
@@ -428,46 +412,46 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                       <div
                         key={node.id}
                         onClick={() => setSelectedNodeId(node.id)}
-                        className={`p-4 rounded-2xl border-2 transition-all cursor-pointer text-left relative flex flex-col justify-between ${getNodeColors(
+                        className={`p-5 rounded-2xl border-2 transition-all cursor-pointer text-left relative flex flex-col justify-between ${getNodeColors(
                           node.type,
                           isSelected
                         )}`}
                       >
                         <div>
-                          <div className="flex items-start justify-between gap-2 mb-2.5">
-                            <div className="flex items-center gap-2.5">
+                          <div className="flex items-start justify-between gap-2 mb-3">
+                            <div className="flex items-center gap-3">
                               <div className="p-2 rounded-xl bg-slate-950/90 border border-slate-800 shadow">
                                 {getNodeIcon(node.type)}
                               </div>
                               <div>
-                                <h4 className="text-sm font-extrabold text-white leading-tight">
+                                <h4 className="text-base font-bold text-white leading-tight">
                                   {node.label}
                                 </h4>
-                                <span className="text-[11px] font-mono text-slate-400">{node.sublabel}</span>
+                                <span className="text-xs font-mono text-slate-400">{node.sublabel}</span>
                               </div>
                             </div>
-                            <span className="text-[10px] uppercase font-mono font-bold px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">
+                            <span className="text-xs uppercase font-mono font-bold px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">
                               {node.type}
                             </span>
                           </div>
 
-                          <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                          <p className="text-sm text-slate-300 leading-relaxed mb-4">
                             {node.description}
                           </p>
                         </div>
 
-                        <div className="space-y-2 pt-3 border-t border-slate-800/80">
+                        <div className="space-y-2.5 pt-3 border-t border-slate-800/80">
                           {node.spec && (
-                            <div className="text-[11px] font-mono text-cyan-300 bg-slate-950/90 px-2.5 py-1 rounded-lg border border-cyan-900/70 flex items-center justify-between">
+                            <div className="text-xs font-mono text-slate-200 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center justify-between">
                               <span>⚙️ {node.spec}</span>
                             </div>
                           )}
 
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between pt-1">
                             {getStatusBadge(node.status)}
                             <span
-                              className={`text-[11px] font-bold transition-colors ${
-                                isSelected ? 'text-orange-400' : 'text-slate-500 hover:text-slate-300'
+                              className={`text-xs font-bold transition-colors ${
+                                isSelected ? 'text-orange-400' : 'text-slate-400 hover:text-slate-200'
                               }`}
                             >
                               {isSelected ? '✓ 세부 스펙 열람 중' : '클릭하여 스펙 보기 →'}
@@ -488,35 +472,35 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                     <div
                       key={node.id}
                       onClick={() => setSelectedNodeId(node.id)}
-                      className={`p-4 rounded-2xl border-2 transition-all cursor-pointer text-left ${getNodeColors(
+                      className={`p-5 rounded-2xl border-2 transition-all cursor-pointer text-left ${getNodeColors(
                         node.type,
                         isSelected
                       )}`}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-2">
+                      <div className="flex items-center justify-between mb-2.5">
+                        <div className="flex items-center gap-2.5">
                           <div className="p-1.5 rounded-lg bg-slate-950/80 border border-slate-800">
                             {getNodeIcon(node.type)}
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-white">{node.label}</h4>
-                            <span className="text-[10px] font-mono text-slate-400">{node.sublabel}</span>
+                            <h4 className="text-base font-bold text-white">{node.label}</h4>
+                            <span className="text-xs font-mono text-slate-400">{node.sublabel}</span>
                           </div>
                         </div>
-                        <span className="text-[10px] uppercase font-mono font-bold px-1.5 py-0.5 rounded bg-slate-950 text-slate-400 border border-slate-800">
+                        <span className="text-xs uppercase font-mono font-bold px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">
                           {node.type}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-300 mb-2">{node.description}</p>
+                      <p className="text-sm text-slate-300 mb-3 leading-relaxed">{node.description}</p>
                       {node.spec && (
-                        <div className="text-[11px] font-mono text-cyan-300 bg-slate-950 px-2 py-1 rounded border border-cyan-900/60 mb-2">
+                        <div className="text-xs font-mono text-slate-200 bg-slate-950 px-2.5 py-1.5 rounded border border-slate-800 mb-3">
                           {node.spec}
                         </div>
                       )}
-                      <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center justify-between text-xs pt-1 border-t border-slate-800">
                         {getStatusBadge(node.status)}
-                        <span className="text-[11px] text-orange-400 font-bold">
-                          {isSelected ? '선택됨' : '스펙 열기'}
+                        <span className="text-xs text-orange-400 font-bold">
+                          {isSelected ? '선택됨' : '스펙 열기 →'}
                         </span>
                       </div>
                     </div>
@@ -585,28 +569,28 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
           {/* NODE DETAIL INSPECTOR: The Critical Specification Panel */}
           {selectedNode && (
-            <div className="p-6 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-orange-500/70 shadow-2xl space-y-5 animate-in fade-in duration-300">
+            <div className="p-6 sm:p-7 rounded-3xl bg-slate-900 border-2 border-orange-500 shadow-2xl space-y-6 animate-in fade-in duration-300">
               {/* Inspector Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-orange-500/20 text-orange-400 border border-orange-500/50 flex items-center justify-center shadow-lg shadow-orange-500/10">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-2xl bg-orange-500/15 text-orange-400 border border-orange-500/30 flex items-center justify-center shadow-lg shadow-orange-500/10">
                     {getNodeIcon(selectedNode.type)}
                   </div>
                   <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs uppercase font-mono font-bold px-2 py-0.5 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30">
-                        {selectedNode.type} 노드 세부 엔지니어링 스펙
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs uppercase font-mono font-bold px-2.5 py-0.5 rounded-md bg-orange-500/15 text-orange-400 border border-orange-500/30">
+                        {selectedNode.type} 노드 엔지니어링 스펙
                       </span>
                       {getStatusBadge(selectedNode.status)}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-black text-white mt-1">
+                    <h3 className="text-xl sm:text-2xl font-black text-white">
                       {selectedNode.label} <span className="text-sm font-mono text-slate-400 font-normal">({selectedNode.sublabel})</span>
                     </h3>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 text-xs text-slate-400">
-                  <span className="font-mono bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">
+                  <span className="font-mono bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 text-slate-300">
                     ID: {selectedNode.id}
                   </span>
                 </div>
@@ -615,67 +599,67 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
               {/* Inspector 3-Column Info Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* 1. 아키텍처 역할 */}
-                <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
-                  <h5 className="text-xs font-bold text-cyan-400 flex items-center gap-1.5">
-                    <Activity className="w-4 h-4" />
+                <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2.5">
+                  <h5 className="text-sm font-bold text-white flex items-center gap-2">
+                    <Activity className="w-4 h-4 text-orange-400" />
                     <span>아키텍처 역할 & 처리 로직</span>
                   </h5>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     {selectedNodeSpec?.architectureRole || selectedNode.description}
                   </p>
                 </div>
 
                 {/* 2. 하드웨어 및 인프라 실측 규격 */}
-                <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
-                  <h5 className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-                    <Cpu className="w-4 h-4" />
+                <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2.5">
+                  <h5 className="text-sm font-bold text-white flex items-center gap-2">
+                    <Cpu className="w-4 h-4 text-orange-400" />
                     <span>하드웨어 규격 & 네트워크 프로토콜</span>
                   </h5>
-                  <div className="space-y-1.5 text-xs text-slate-300">
+                  <div className="space-y-2 text-sm text-slate-300">
                     <div>
-                      <span className="text-slate-500 text-[11px] block font-mono">인프라 사양:</span>
-                      <span className="font-semibold">{selectedNodeSpec?.hardwareSpec || selectedNode.spec || '표준 K8s Pod Spec'}</span>
+                      <span className="text-slate-400 text-xs block font-mono">인프라 사양:</span>
+                      <span className="font-semibold text-white">{selectedNodeSpec?.hardwareSpec || selectedNode.spec || '표준 K8s Pod Spec'}</span>
                     </div>
                     <div>
-                      <span className="text-slate-500 text-[11px] block font-mono">포트 및 프로토콜:</span>
-                      <span className="font-mono text-emerald-300">{selectedNodeSpec?.portsProtocols || 'gRPC / HTTPS / TCP'}</span>
+                      <span className="text-slate-400 text-xs block font-mono">포트 및 프로토콜:</span>
+                      <span className="font-mono text-orange-300">{selectedNodeSpec?.portsProtocols || 'gRPC / HTTPS / TCP'}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* 3. 연결된 트래픽 경로 (Inbound / Outbound) */}
-                <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
-                  <h5 className="text-xs font-bold text-purple-400 flex items-center gap-1.5">
-                    <Workflow className="w-4 h-4" />
+                <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2.5">
+                  <h5 className="text-sm font-bold text-white flex items-center gap-2">
+                    <Workflow className="w-4 h-4 text-orange-400" />
                     <span>연결된 트래픽 입출력</span>
                   </h5>
-                  <div className="space-y-1.5 text-xs">
+                  <div className="space-y-2 text-sm">
                     <div>
-                      <span className="text-slate-500 text-[11px] font-mono">인바운드 (수신):</span>
+                      <span className="text-slate-400 text-xs font-mono">인바운드 (수신):</span>
                       {inboundEdges.length > 0 ? (
                         inboundEdges.map((e, i) => (
-                          <div key={i} className="text-slate-300 flex items-center gap-1 mt-0.5">
-                            <span className="font-mono text-cyan-400">{e.from}</span>
+                          <div key={i} className="text-slate-200 flex items-center gap-1.5 mt-0.5">
+                            <span className="font-mono text-orange-400 font-bold">{e.from}</span>
                             <span className="text-slate-500">→</span>
-                            <span className="text-[11px] text-slate-400">({e.label})</span>
+                            <span className="text-xs text-slate-400">({e.label})</span>
                           </div>
                         ))
                       ) : (
-                        <div className="text-slate-500 text-[11px]">외부 최초 인입점 (Root Trigger)</div>
+                        <div className="text-slate-400 text-xs">외부 최초 인입점 (Root Trigger)</div>
                       )}
                     </div>
-                    <div className="pt-1 border-t border-slate-800/80">
-                      <span className="text-slate-500 text-[11px] font-mono">아웃바운드 (발신):</span>
+                    <div className="pt-1.5 border-t border-slate-800">
+                      <span className="text-slate-400 text-xs font-mono">아웃바운드 (발신):</span>
                       {outboundEdges.length > 0 ? (
                         outboundEdges.map((e, i) => (
-                          <div key={i} className="text-slate-300 flex items-center gap-1 mt-0.5">
-                            <span className="font-mono text-amber-400">{e.to}</span>
+                          <div key={i} className="text-slate-200 flex items-center gap-1.5 mt-0.5">
+                            <span className="font-mono text-orange-400 font-bold">{e.to}</span>
                             <span className="text-slate-500">→</span>
-                            <span className="text-[11px] text-slate-400">({e.label})</span>
+                            <span className="text-xs text-slate-400">({e.label})</span>
                           </div>
                         ))
                       ) : (
-                        <div className="text-slate-500 text-[11px]">최종 영속 저장/완료 노드 (Terminal)</div>
+                        <div className="text-slate-400 text-xs">최종 영속 저장/완료 노드 (Terminal)</div>
                       )}
                     </div>
                   </div>
@@ -684,13 +668,13 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
               {/* SRE Production Tip Banner */}
               {selectedNodeSpec?.sreProductionTip && (
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-950/40 via-slate-900 to-amber-950/20 border border-amber-500/40 flex items-start gap-3">
-                  <Lightbulb className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                <div className="p-5 rounded-2xl bg-slate-950 border border-orange-500/30 flex items-start gap-3.5">
+                  <Lightbulb className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
                   <div>
-                    <h5 className="text-xs font-bold text-amber-300 mb-1">
+                    <h5 className="text-sm font-bold text-orange-400 mb-1">
                       💡 당근 SRE 현장 트러블슈팅 경험담 & 장애 방지 가드레일:
                     </h5>
-                    <p className="text-xs text-amber-100/90 leading-relaxed">
+                    <p className="text-sm text-slate-200 leading-relaxed">
                       {selectedNodeSpec.sreProductionTip}
                     </p>
                   </div>
@@ -700,22 +684,22 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
               {/* Production Configuration / YAML Manifest Box */}
               {selectedNodeSpec?.productionConfigCode && (
                 <div className="rounded-2xl border border-slate-800 bg-slate-950 overflow-hidden">
-                  <div className="px-4 py-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
+                  <div className="px-5 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm font-bold text-white">
                       <Code2 className="w-4 h-4 text-orange-400" />
                       <span>실전 프로덕션 설정 코드: {selectedNodeSpec.productionConfigTitle}</span>
                     </div>
 
                     <button
                       onClick={() => handleCopySnippet(selectedNodeSpec.productionConfigCode)}
-                      className="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 cursor-pointer transition-colors"
+                      className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 cursor-pointer transition-colors"
                     >
                       {copiedSnippet ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                       <span>{copiedSnippet ? '복사됨!' : '설정 코드 복사'}</span>
                     </button>
                   </div>
 
-                  <pre className="p-4 text-xs font-mono text-cyan-200 overflow-x-auto leading-relaxed bg-black/60 max-h-72">
+                  <pre className="p-5 text-sm font-mono text-slate-200 overflow-x-auto leading-relaxed bg-black/60 max-h-80">
                     <code>{selectedNodeSpec.productionConfigCode}</code>
                   </pre>
                 </div>
@@ -729,33 +713,33 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
       {activeView === 'comparison' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Before */}
-          <div className="p-6 rounded-3xl bg-rose-950/20 border-2 border-rose-900/50 space-y-4 shadow-xl">
-            <div className="flex items-center justify-between pb-3 border-b border-rose-900/50">
-              <div className="flex items-center gap-2 text-rose-400 font-extrabold text-base">
-                <AlertTriangle className="w-5 h-5 text-rose-400" />
+          <div className="p-6 sm:p-7 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 shadow-xl">
+            <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
+              <div className="flex items-center gap-2 text-white font-extrabold text-base sm:text-lg">
+                <AlertTriangle className="w-5 h-5 text-orange-400" />
                 <span>{arch.beforeArchitecture.title}</span>
               </div>
-              <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-rose-900/40 text-rose-300 border border-rose-800">
+              <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
                 기존 한계
               </span>
             </div>
 
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               {arch.beforeArchitecture.description}
             </p>
 
-            <div className="space-y-2 pt-2">
-              <h5 className="text-xs font-bold text-rose-300 uppercase tracking-wider font-mono">
+            <div className="space-y-2.5 pt-2">
+              <h5 className="text-xs font-bold text-slate-400 uppercase tracking-wider font-mono">
                 발생했던 병목 현상 및 리스크:
               </h5>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {arch.beforeArchitecture.bottlenecks.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-2.5 text-xs text-rose-200/90 bg-rose-950/40 p-2.5 rounded-xl border border-rose-900/40"
+                    className="flex items-start gap-3 text-sm text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800"
                   >
-                    <span className="text-rose-400 font-bold">✕</span>
-                    <span>{item}</span>
+                    <span className="text-orange-400 font-bold shrink-0">✕</span>
+                    <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -763,33 +747,33 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
           </div>
 
           {/* After (당근 개선) */}
-          <div className="p-6 rounded-3xl bg-emerald-950/20 border-2 border-emerald-900/50 space-y-4 shadow-xl">
-            <div className="flex items-center justify-between pb-3 border-b border-emerald-900/50">
-              <div className="flex items-center gap-2 text-emerald-400 font-extrabold text-base">
-                <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+          <div className="p-6 sm:p-7 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 shadow-xl">
+            <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
+              <div className="flex items-center gap-2 text-white font-extrabold text-base sm:text-lg">
+                <CheckCircle2 className="w-5 h-5 text-orange-400" />
                 <span>{arch.afterArchitecture.title}</span>
               </div>
-              <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-900/40 text-emerald-300 border border-emerald-800">
+              <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-orange-500/10 text-orange-400 border border-orange-500/30">
                 당근 도입 효과
               </span>
             </div>
 
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               {arch.afterArchitecture.description}
             </p>
 
-            <div className="space-y-2 pt-2">
-              <h5 className="text-xs font-bold text-emerald-300 uppercase tracking-wider font-mono">
+            <div className="space-y-2.5 pt-2">
+              <h5 className="text-xs font-bold text-slate-400 uppercase tracking-wider font-mono">
                 달성한 정량적 성과 & 엔지니어링 개선:
               </h5>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {arch.afterArchitecture.improvements.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-2.5 text-xs text-emerald-200/90 bg-emerald-950/40 p-2.5 rounded-xl border border-emerald-900/40"
+                    className="flex items-start gap-3 text-sm text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800"
                   >
-                    <span className="text-emerald-400 font-bold">✓</span>
-                    <span>{item}</span>
+                    <span className="text-orange-400 font-bold shrink-0">✓</span>
+                    <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -800,42 +784,42 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
       {/* VIEW 3: 5-Step Pipeline */}
       {activeView === 'pipeline' && (
-        <div className="p-6 rounded-3xl bg-slate-950 border-2 border-slate-800 space-y-5 shadow-2xl">
+        <div className="p-6 sm:p-7 rounded-3xl bg-slate-900 border border-slate-800 space-y-5 shadow-2xl">
           <div className="flex items-center justify-between pb-4 border-b border-slate-800">
             <div>
-              <h4 className="text-base font-extrabold text-white flex items-center gap-2">
-                <Zap className="w-5 h-5 text-amber-400" />
+              <h4 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
+                <Zap className="w-5 h-5 text-orange-400" />
                 <span>엔지니어링 실행 파이프라인 (5단계 완전 분해)</span>
               </h4>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-sm text-slate-300 mt-1">
                 요청 유입부터 실제 최적화 로직 및 완료까지 단계별 소요 시간과 처리 메트릭입니다.
               </p>
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3.5">
             {arch.pipelineSteps.map((step) => (
               <div
                 key={step.step}
-                className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-700 transition-colors"
+                className="p-5 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-slate-700 transition-colors"
               >
-                <div className="flex items-start gap-3.5">
-                  <div className="w-8 h-8 rounded-xl bg-orange-600/20 text-orange-400 border border-orange-500/40 flex items-center justify-center font-bold text-sm shrink-0">
+                <div className="flex items-start gap-4">
+                  <div className="w-9 h-9 rounded-xl bg-orange-500/15 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-base shrink-0">
                     {step.step}
                   </div>
                   <div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mb-1">
                       <span className="text-xs font-bold text-orange-400 font-mono">
                         [Phase {step.step}: {step.phase}]
                       </span>
-                      <h5 className="text-sm font-bold text-white">{step.action}</h5>
+                      <h5 className="text-base font-bold text-white">{step.action}</h5>
                     </div>
-                    <p className="text-xs text-slate-300 mt-1">{step.detail}</p>
+                    <p className="text-sm text-slate-300 leading-relaxed">{step.detail}</p>
                   </div>
                 </div>
 
                 {step.durationOrMetric && (
-                  <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-xl bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 whitespace-nowrap self-start sm:self-center">
+                  <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-700 whitespace-nowrap self-start sm:self-center">
                     ⏱️ {step.durationOrMetric}
                   </span>
                 )}
@@ -847,36 +831,36 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
       {/* VIEW 4: Core Component Technical Specs Table */}
       {activeView === 'specs' && (
-        <div className="p-6 rounded-3xl bg-slate-950 border-2 border-slate-800 space-y-4 shadow-2xl">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="p-6 sm:p-7 rounded-3xl bg-slate-900 border border-slate-800 space-y-5 shadow-2xl">
+          <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
             <div>
-              <h4 className="text-base font-extrabold text-white flex items-center gap-2">
+              <h4 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
                 <Cpu className="w-5 h-5 text-orange-400" />
                 <span>핵심 기술 컴포넌트 실무 구성표</span>
               </h4>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-sm text-slate-300 mt-1">
                 실제 프로덕션 환경에 배포된 스펙, 라이브러리 버전, 파라미터 구성 내역입니다.
               </p>
             </div>
           </div>
 
           <div className="overflow-x-auto rounded-2xl border border-slate-800">
-            <table className="w-full text-xs text-left">
-              <thead className="bg-slate-900 text-slate-400 uppercase font-mono border-b border-slate-800">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-slate-950 text-slate-300 uppercase font-mono border-b border-slate-800">
                 <tr>
-                  <th className="py-3 px-4">컴포넌트</th>
-                  <th className="py-3 px-4">역할 및 책임</th>
-                  <th className="py-3 px-4">기술 스택 / 엔진</th>
-                  <th className="py-3 px-4">핵심 설정값 / 파라미터</th>
+                  <th className="py-3.5 px-4 font-bold">컴포넌트</th>
+                  <th className="py-3.5 px-4 font-bold">역할 및 책임</th>
+                  <th className="py-3.5 px-4 font-bold">기술 스택 / 엔진</th>
+                  <th className="py-3.5 px-4 font-bold">핵심 설정값 / 파라미터</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800 text-slate-300">
+              <tbody className="divide-y divide-slate-800 text-slate-300 bg-slate-950/60">
                 {arch.keySpecs.map((spec, idx) => (
-                  <tr key={idx} className="hover:bg-slate-900/50 transition-colors">
-                    <td className="py-3 px-4 font-bold text-white">{spec.component}</td>
-                    <td className="py-3 px-4">{spec.role}</td>
-                    <td className="py-3 px-4 font-mono text-cyan-300">{spec.tech}</td>
-                    <td className="py-3 px-4 font-mono text-amber-300 bg-slate-950/40">{spec.keyConfig}</td>
+                  <tr key={idx} className="hover:bg-slate-900/60 transition-colors">
+                    <td className="py-3.5 px-4 font-bold text-white">{spec.component}</td>
+                    <td className="py-3.5 px-4 leading-relaxed">{spec.role}</td>
+                    <td className="py-3.5 px-4 font-mono text-slate-200">{spec.tech}</td>
+                    <td className="py-3.5 px-4 font-mono text-slate-300 bg-slate-950/40">{spec.keyConfig}</td>
                   </tr>
                 ))}
               </tbody>
@@ -889,43 +873,43 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
       {activeView === 'mermaid' && (
         <div className="space-y-6">
           {/* ASCII Diagram Box */}
-          <div className="p-5 rounded-3xl bg-slate-950 border-2 border-slate-800 space-y-3 shadow-xl">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
-                <Terminal className="w-4 h-4 text-cyan-400" />
+          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3.5 shadow-xl">
+            <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
+              <div className="flex items-center gap-2 text-sm font-bold text-white">
+                <Terminal className="w-4 h-4 text-orange-400" />
                 <span>ASCII 아키텍처 다이어그램 (터미널 & 텍스트 문서용)</span>
               </div>
               <button
                 onClick={handleCopyAscii}
-                className="flex items-center gap-1 px-3 py-1 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg cursor-pointer"
               >
                 {copiedAscii ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedAscii ? '복사됨!' : 'ASCII 복사'}</span>
               </button>
             </div>
 
-            <pre className="p-4 rounded-xl bg-slate-900/90 text-[11px] font-mono text-cyan-300 overflow-x-auto leading-relaxed border border-slate-800">
+            <pre className="p-4 sm:p-5 rounded-xl bg-slate-950 text-xs sm:text-sm font-mono text-slate-200 overflow-x-auto leading-relaxed border border-slate-800">
               <code>{arch.asciiDiagram}</code>
             </pre>
           </div>
 
           {/* Mermaid Code Box */}
-          <div className="p-5 rounded-3xl bg-slate-950 border-2 border-slate-800 space-y-3 shadow-xl">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300">
+          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-3.5 shadow-xl">
+            <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
+              <div className="flex items-center gap-2 text-sm font-bold text-white">
                 <FileCode className="w-4 h-4 text-orange-400" />
                 <span>Mermaid 다이어그램 원본 코드 (Notion / GitHub / Obsidian 지원)</span>
               </div>
               <button
                 onClick={handleCopyMermaid}
-                className="flex items-center gap-1 px-3 py-1 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg cursor-pointer"
               >
                 {copiedMermaid ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedMermaid ? '복사됨!' : 'Mermaid 코드 복사'}</span>
               </button>
             </div>
 
-            <pre className="p-4 rounded-xl bg-slate-900/90 text-xs font-mono text-orange-300 overflow-x-auto leading-relaxed border border-slate-800">
+            <pre className="p-4 sm:p-5 rounded-xl bg-slate-950 text-xs sm:text-sm font-mono text-slate-200 overflow-x-auto leading-relaxed border border-slate-800">
               <code>{arch.mermaidCode}</code>
             </pre>
           </div>

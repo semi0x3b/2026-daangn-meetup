@@ -162,8 +162,9 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
         </div>
 
         {/* Layer Filter Pills */}
-        <div className="px-6 py-2.5 bg-slate-950 border-b border-slate-800 flex items-center gap-2 overflow-x-auto text-xs">
-          <span className="text-slate-500 shrink-0 font-medium">계층 필터:</span>
+        {/* Layer Filter Pills */}
+        <div className="px-6 py-3 bg-slate-950 border-b border-slate-800 flex items-center gap-2 overflow-x-auto text-sm">
+          <span className="text-slate-400 shrink-0 font-semibold">계층 필터:</span>
           {[
             { id: 'all', label: '전체 5계층 아키텍처 뷰' },
             { id: 'layer-1', label: '1. CI/CD & 배포' },
@@ -175,10 +176,10 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
             <button
               key={l.id}
               onClick={() => setSelectedLayer(l.id)}
-              className={`px-3 py-1 rounded-lg font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded-xl font-semibold transition-colors cursor-pointer whitespace-nowrap text-sm ${
                 selectedLayer === l.id
                   ? 'bg-orange-600 text-white shadow-sm shadow-orange-500/30'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                  : 'bg-slate-900 text-slate-300 hover:text-white border border-slate-800'
               }`}
             >
               {l.label}
@@ -190,30 +191,30 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 bg-slate-950/60">
           {/* Layer 1: Developer Environment & CI/CD */}
           {(selectedLayer === 'all' || selectedLayer === 'layer-1') && (
-            <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-950/20 via-slate-900 to-slate-900 p-5 space-y-4 shadow-lg">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-md bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-xs">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6 space-y-5 shadow-lg">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                <div className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-xs">
                     L1
                   </span>
-                  <h4 className="text-sm font-bold text-white">개발자 환경 & 배포 오케스트레이션 계층</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-white">개발자 환경 & 배포 오케스트레이션 계층</h4>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-amber-300 font-mono">CI 14분 → 2분 | MCP 배포 안전 가드레일</span>
+                  <span className="text-xs sm:text-sm text-slate-300 font-mono">CI 14분 → 2분 | MCP 배포 안전 가드레일</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Node 1 */}
-                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+                <div className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-                      <Terminal className="w-4 h-4 text-amber-400" />
+                    <span className="text-sm font-bold text-white flex items-center gap-2">
+                      <Terminal className="w-4 h-4 text-orange-400" />
                       <span>AI 코딩 & 개발 환경</span>
                     </span>
-                    <span className="text-[10px] bg-slate-900 text-slate-400 px-1.5 py-0.5 rounded">Cursor / Claude</span>
+                    <span className="text-xs bg-slate-900 text-slate-300 px-2 py-0.5 rounded border border-slate-800">Cursor / Claude</span>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     AI 코딩 도구를 통해 PR 생성 속도 3배 증가. 마이크로서비스 및 프론트엔드 모노레포에 코드 푸시.
                   </p>
                 </div>
@@ -221,18 +222,18 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 2 - Session 1 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[0])}
-                  className="p-4 rounded-xl bg-slate-950 border border-amber-500/40 hover:border-amber-400 transition-all cursor-pointer group space-y-2 relative"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-amber-300 flex items-center gap-1">
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-1.5">
                       <span>[세션 1] 고속 캐시 CI 러너</span>
                     </span>
-                    <span className="text-[10px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold">히트율 99.4%</span>
+                    <span className="text-xs bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2 py-0.5 rounded font-bold">히트율 99.4%</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     K8s Ephemeral Runner + NVMe 로컬 캐시 데몬 + BuildKit 레지스트리 캐시(mode=max)로 빌드 시간 85% 단축.
                   </p>
-                  <div className="text-[11px] text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>
@@ -240,18 +241,18 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 3 - Session 2 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[1])}
-                  className="p-4 rounded-xl bg-slate-950 border border-violet-500/40 hover:border-violet-400 transition-all cursor-pointer group space-y-2 relative"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-violet-300 flex items-center gap-1">
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-1.5">
                       <span>[세션 2] 배포 전용 MCP 서버</span>
                     </span>
-                    <span className="text-[10px] bg-violet-500/20 text-violet-400 px-1.5 py-0.5 rounded font-bold">SLO 가드레일</span>
+                    <span className="text-xs bg-slate-900 text-slate-200 border border-slate-700 px-2 py-0.5 rounded font-bold">SLO 가드레일</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     에이전트 쉘 실행 차단. 표준 MCP 툴로 래핑하여 슬랙 Human-in-the-loop + 카나리 10% 메트릭 자동 검증.
                   </p>
-                  <div className="text-[11px] text-violet-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>
@@ -261,16 +262,16 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
 
           {/* Layer 2: Compute & Accelerator Layer */}
           {(selectedLayer === 'all' || selectedLayer === 'layer-2') && (
-            <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/20 via-slate-900 to-slate-900 p-5 space-y-4 shadow-lg">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-xs">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6 space-y-5 shadow-lg">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                <div className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-xs">
                     L2
                   </span>
-                  <h4 className="text-sm font-bold text-white">멀티 클라우드 오케스트레이션 & AI 가속기 계층</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-white">멀티 클라우드 오케스트레이션 & AI 가속기 계층</h4>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-emerald-300 font-mono">EKS 비용 -28% | TPU 가동률 82%</span>
+                  <span className="text-xs sm:text-sm text-slate-300 font-mono">EKS 비용 -28% | TPU 가동률 82%</span>
                 </div>
               </div>
 
@@ -278,19 +279,19 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 1 - Session 3 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[2])}
-                  className="p-4 rounded-xl bg-slate-950 border border-emerald-500/40 hover:border-emerald-400 transition-all cursor-pointer group space-y-2"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
-                      <Cpu className="w-4 h-4 text-emerald-400" />
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
+                      <Cpu className="w-4 h-4 text-orange-400" />
                       <span>[세션 3] AWS EKS + Karpenter v1.0</span>
                     </span>
-                    <span className="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded font-bold">프로비저닝 35초</span>
+                    <span className="text-xs bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2 py-0.5 rounded font-bold">프로비저닝 35초</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     기존 ASG 45개 전면 제거. Spot 우선 정책과 Graviton(ARM64) 유연성 풀, Consolidation으로 클라우드 유휴 리소스 38% → 8% 절감.
                   </p>
-                  <div className="text-[11px] text-emerald-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>
@@ -298,19 +299,19 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 2 - Session 4 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[3])}
-                  className="p-4 rounded-xl bg-slate-950 border border-cyan-500/40 hover:border-cyan-400 transition-all cursor-pointer group space-y-2"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
-                      <Zap className="w-4 h-4 text-cyan-400" />
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
+                      <Zap className="w-4 h-4 text-orange-400" />
                       <span>[세션 4] GKE + TPU v5e 가속기 풀</span>
                     </span>
-                    <span className="text-[10px] bg-cyan-500/20 text-cyan-400 px-1.5 py-0.5 rounded font-bold">가동률 82%</span>
+                    <span className="text-xs bg-slate-900 text-slate-200 border border-slate-700 px-2 py-0.5 rounded font-bold">가동률 82%</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     KubeRay 기반 주간 실시간 추론(vLLM) ↔ 야간 대규모 임베딩 배치 자동 전환. GCS 영구 XLA 캐시로 콜드 스타트 95% 단축.
                   </p>
-                  <div className="text-[11px] text-cyan-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>
@@ -320,16 +321,16 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
 
           {/* Layer 3: Storage, Caching & Kernel Layer */}
           {(selectedLayer === 'all' || selectedLayer === 'layer-3') && (
-            <div className="rounded-2xl border border-teal-500/30 bg-gradient-to-r from-teal-950/20 via-slate-900 to-slate-900 p-5 space-y-4 shadow-lg">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-md bg-teal-500/20 text-teal-400 border border-teal-500/30 flex items-center justify-center font-bold text-xs">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6 space-y-5 shadow-lg">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                <div className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-xs">
                     L3
                   </span>
-                  <h4 className="text-sm font-bold text-white">데이터 캐시 인프라 & 커널 레벨 분석 계층</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-white">데이터 캐시 인프라 & 커널 레벨 분석 계층</h4>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-teal-300 font-mono">다운타임 0초 Valkey | eBPF 0.3% 계측</span>
+                  <span className="text-xs sm:text-sm text-slate-300 font-mono">다운타임 0초 Valkey | eBPF 0.3% 계측</span>
                 </div>
               </div>
 
@@ -337,19 +338,19 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 1 - Session 8 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[7])}
-                  className="p-4 rounded-xl bg-slate-950 border border-teal-500/40 hover:border-teal-400 transition-all cursor-pointer group space-y-2"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-teal-300 flex items-center gap-1.5">
-                      <Database className="w-4 h-4 text-teal-400" />
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
+                      <Database className="w-4 h-4 text-orange-400" />
                       <span>[세션 8] Valkey 8.0 표준 캐시 인프라</span>
                     </span>
-                    <span className="text-[10px] bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded font-bold">QPS +32% 향상</span>
+                    <span className="text-xs bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2 py-0.5 rounded font-bold">QPS +32% 향상</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     Redis 라이선스 전환에 대응해 리눅스 재단 Valkey로 무중단 레플리카 복제 페일오버. 사내 공통 캐시 SDK로 재시도 백오프 표준화.
                   </p>
-                  <div className="text-[11px] text-teal-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>
@@ -357,19 +358,19 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 2 - Session 6 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[5])}
-                  className="p-4 rounded-xl bg-slate-950 border border-orange-500/40 hover:border-orange-400 transition-all cursor-pointer group space-y-2"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-orange-300 flex items-center gap-1.5">
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
                       <Activity className="w-4 h-4 text-orange-400" />
                       <span>[세션 6] eBPF 커널 심층 모니터링</span>
                     </span>
-                    <span className="text-[10px] bg-orange-500/20 text-orange-400 px-1.5 py-0.5 rounded font-bold">부하 0.3% 미만</span>
+                    <span className="text-xs bg-slate-900 text-slate-200 border border-slate-700 px-2 py-0.5 rounded font-bold">부하 0.3% 미만</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     애플리케이션 APM이 보지 못하는 TCP SYN 재전송 및 conntrack 락 경합을 kprobe 링 버퍼에 기록해 간헐적 504 유령 장애 규명.
                   </p>
-                  <div className="text-[11px] text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>
@@ -379,50 +380,50 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
 
           {/* Layer 4: Next-Gen AI Observability */}
           {(selectedLayer === 'all' || selectedLayer === 'layer-4') && (
-            <div className="rounded-2xl border border-blue-500/30 bg-gradient-to-r from-blue-950/20 via-slate-900 to-slate-900 p-5 space-y-4 shadow-lg">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center font-bold text-xs">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6 space-y-5 shadow-lg">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                <div className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-xs">
                     L4
                   </span>
-                  <h4 className="text-sm font-bold text-white">차세대 AI 옵저버빌리티 & 장애 대응 계층</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-white">차세대 AI 옵저버빌리티 & 장애 대응 계층</h4>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-blue-300 font-mono">MTTR 45분 → 8분 (-82%)</span>
+                  <span className="text-xs sm:text-sm text-slate-300 font-mono">MTTR 45분 → 8분 (-82%)</span>
                 </div>
               </div>
 
               {/* Node - Session 5 Full Width */}
               <div
                 onClick={() => onSelectSession(SESSIONS_DATA[4])}
-                className="p-5 rounded-xl bg-slate-950 border border-blue-500/40 hover:border-blue-400 transition-all cursor-pointer group space-y-3"
+                className="p-5 sm:p-6 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-3.5"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-sm font-bold text-blue-300 flex items-center gap-2">
-                    <Bot className="w-4 h-4 text-blue-400" />
+                  <span className="text-base font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
+                    <Bot className="w-5 h-5 text-orange-400" />
                     <span>[세션 5] Grafana 800개 대시보드 탈피 & AI 에이전트 자율 분석 파이프라인</span>
                   </span>
-                  <span className="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded font-bold">
+                  <span className="text-xs bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2.5 py-1 rounded-md font-bold">
                     최고 인기 세션 (조회수 4,490회)
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300 pt-1">
-                  <div className="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
-                    <span className="font-semibold text-blue-400 block mb-1">1. 원천 텔레메트리 직접 파싱</span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-sm text-slate-300 pt-1">
+                  <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                    <span className="font-bold text-white block mb-1.5">1. 원천 텔레메트리 직접 파싱</span>
                     Prometheus/Mimir 시계열 메트릭 + Tempo 분산 트레이스 스팬을 사람이 아닌 에이전트가 자동 수집.
                   </div>
-                  <div className="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
-                    <span className="font-semibold text-blue-400 block mb-1">2. 스마트 슬랙 얼럿 발송</span>
+                  <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                    <span className="font-bold text-white block mb-1.5">2. 스마트 슬랙 얼럿 발송</span>
                     단순 임계치 알림 대신 "원인(PR 링크) + 3가지 증거 체인 + 권장 롤백 조치"가 완결된 메시지 전달.
                   </div>
-                  <div className="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
-                    <span className="font-semibold text-blue-400 block mb-1">3. 자연어 대화형 인터페이스</span>
+                  <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
+                    <span className="font-bold text-white block mb-1.5">3. 자연어 대화형 인터페이스</span>
                     온콜 엔지니어가 "어젯밤 11시 결제 지연 원인 뭐야?" 물으면 5초 만에 상관관계 정밀 진단.
                   </div>
                 </div>
 
-                <div className="text-[11px] text-blue-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform pt-1">
+                <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform pt-1">
                   세션 상세 보기 →
                 </div>
               </div>
@@ -431,16 +432,16 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
 
           {/* Layer 5: Enterprise Security & Identity Governance */}
           {(selectedLayer === 'all' || selectedLayer === 'layer-5') && (
-            <div className="rounded-2xl border border-rose-500/30 bg-gradient-to-r from-rose-950/20 via-slate-900 to-slate-900 p-5 space-y-4 shadow-lg">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-md bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center font-bold text-xs">
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 sm:p-6 space-y-5 shadow-lg">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                <div className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-xs">
                     L5
                   </span>
-                  <h4 className="text-sm font-bold text-white">엔터프라이즈 보안 & ID 거버넌스 계층</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-white">엔터프라이즈 보안 & ID 거버넌스 계층</h4>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] text-rose-300 font-mono">정적 키 0개 | 퇴사 권한 회수 1초</span>
+                  <span className="text-xs sm:text-sm text-slate-300 font-mono">정적 키 0개 | 퇴사 권한 회수 1초</span>
                 </div>
               </div>
 
@@ -448,19 +449,19 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 1 - Session 7 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[6])}
-                  className="p-4 rounded-xl bg-slate-950 border border-rose-500/40 hover:border-rose-400 transition-all cursor-pointer group space-y-2"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-rose-300 flex items-center gap-1.5">
-                      <ShieldCheck className="w-4 h-4 text-rose-400" />
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-orange-400" />
                       <span>[세션 7] GitHub Actions OIDC (Zero Static Keys)</span>
                     </span>
-                    <span className="text-[10px] bg-rose-500/20 text-rose-400 px-1.5 py-0.5 rounded font-bold">AWS 키 450개 전수 제거</span>
+                    <span className="text-xs bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2 py-0.5 rounded font-bold">AWS 키 450개 전수 제거</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     하드코딩된 AWS IAM Secret Access Key를 전수 삭제하고, GitHub Actions OIDC Provider를 통해 15분 만료 STS 임시 토큰으로 전면 대체.
                   </p>
-                  <div className="text-[11px] text-rose-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>
@@ -468,19 +469,19 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                 {/* Node 2 - Session 9 */}
                 <div
                   onClick={() => onSelectSession(SESSIONS_DATA[8])}
-                  className="p-4 rounded-xl bg-slate-950 border border-pink-500/40 hover:border-pink-400 transition-all cursor-pointer group space-y-2"
+                  className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all cursor-pointer group space-y-2.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-pink-300 flex items-center gap-1.5">
-                      <ShieldCheck className="w-4 h-4 text-pink-400" />
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-orange-400" />
                       <span>[세션 9] GitHub EMU 전사 무중단 이관</span>
                     </span>
-                    <span className="text-[10px] bg-pink-500/20 text-pink-400 px-1.5 py-0.5 rounded font-bold">권한 회수 누락률 0%</span>
+                    <span className="text-xs bg-slate-900 text-slate-200 border border-slate-700 px-2 py-0.5 rounded font-bold">권한 회수 누락률 0%</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     개인 계정 초대 방식을 폐기하고, Okta SSO + SCIM 프로토콜 연동 회사 관리 계정(EMU)으로 300+명 및 수천 개 레포 무중단 이관.
                   </p>
-                  <div className="text-[11px] text-pink-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
+                  <div className="text-xs sm:text-sm text-orange-400 flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform">
                     세션 상세 보기 →
                   </div>
                 </div>

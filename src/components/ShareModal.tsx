@@ -207,7 +207,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
                   key={s.id}
                   className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80 hover:border-slate-700 transition-colors text-xs"
                 >
-                  <div className="flex-1 truncate mr-2">
+                  <div className="flex-1 mr-2 leading-snug">
                     <span className="text-orange-400 font-bold mr-1.5">[세션 {s.index}]</span>
                     <span className="text-slate-200">{s.title}</span>
                   </div>

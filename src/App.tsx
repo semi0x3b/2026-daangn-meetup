@@ -32,7 +32,6 @@ import { MasterArchitectureDiagram } from './components/MasterArchitectureDiagra
 import { ShareModal } from './components/ShareModal.tsx';
 import { SESSIONS_DATA, PLAYLIST_INFO, SessionData } from './data/playlistData.ts';
 import { downloadStandaloneHtmlReport } from './utils/exportHtmlHelper.ts';
-import { AI_ENABLED } from './utils/urlHelper.ts';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
@@ -124,60 +123,58 @@ export default function App() {
               우리 인프라에 바로 적용할 수 있도록 설계된 실무 플레이북 & 요약 대시보드입니다.
             </p>
 
-            {/* Quick Action Badges */}
+            {/* Quick Action Badges (Clear hierarchy, no rainbow clutter) */}
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={downloadStandaloneHtmlReport}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs sm:text-sm shadow-xl shadow-emerald-600/30 transition-all cursor-pointer border border-emerald-400/40 ring-1 ring-emerald-400/30"
+                className="flex items-center gap-2 px-5 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-xl shadow-orange-600/25 transition-all cursor-pointer border border-orange-500"
                 title="9대 세션 전체 아키텍처 토폴로지, 노드 스펙, 무삭제 녹취록이 담긴 단일 HTML 파일 즉시 다운로드"
               >
-                <Download className="w-4 h-4 text-emerald-200 animate-bounce" />
+                <Download className="w-4 h-4 text-white" />
                 <span>📥 HTML 플레이북 다운로드 (오프라인 영구 보관용)</span>
               </button>
 
               <button
                 onClick={() => setIsPlaybookOpen(true)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-orange-600/25 transition-all cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold text-sm border border-slate-700 transition-colors cursor-pointer"
               >
-                <span>🛠️ 실전 인프라 도입 플레이북 열기</span>
+                <span>🛠️ 실전 인프라 도입 플레이북</span>
               </button>
 
               <button
                 onClick={() => setIsArchitectureOpen(true)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-cyan-600/25 transition-all cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold text-sm border border-slate-700 transition-colors cursor-pointer"
               >
-                <span>🗺️ 전체 아키텍처 토폴로지 (9대 세션 융합)</span>
+                <span>🗺️ 전체 아키텍처 토폴로지</span>
               </button>
 
               <button
                 onClick={() => setIsReportOpen(true)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-xs sm:text-sm border border-slate-700 transition-colors cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-sm border border-slate-700 transition-colors cursor-pointer"
               >
-                <FileText className="w-4 h-4 text-amber-400" />
-                <span>전체 요약 & JSON 로우 데이터</span>
+                <FileText className="w-4 h-4 text-orange-400" />
+                <span>전체 요약 & JSON 데이터</span>
               </button>
 
               <button
                 onClick={() => setIsShareOpen(true)}
-                className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-xs sm:text-sm border border-slate-700 transition-colors cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-sm border border-slate-700 transition-colors cursor-pointer"
               >
-                <Share2 className="w-4 h-4 text-emerald-400" />
+                <Share2 className="w-4 h-4 text-orange-400" />
                 <span>공개 링크 공유</span>
               </button>
 
-              {AI_ENABLED && (
-                <button
-                  onClick={() => {
-                    setChatSession(null);
-                    setChatInitialQuestion('우리 회사 인프라에 가장 먼저 도입해볼 만한 당근 SRE의 Quick-Win 액션 3가지를 추천해줘.');
-                    setIsChatOpen(true);
-                  }}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white text-xs sm:text-sm border border-slate-800 transition-colors cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-400" />
-                  <span>AI 아키텍트 맞춤 질의</span>
-                </button>
-              )}
+              <button
+                onClick={() => {
+                  setChatSession(null);
+                  setChatInitialQuestion('우리 회사 인프라에 가장 먼저 도입해볼 만한 당근 SRE의 Quick-Win 액션 3가지를 추천해줘.');
+                  setIsChatOpen(true);
+                }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white text-sm font-semibold border border-slate-700 transition-colors cursor-pointer"
+              >
+                <Sparkles className="w-4 h-4 text-orange-400" />
+                <span>AI 아키텍트 맞춤 질의</span>
+              </button>
             </div>
           </div>
         </div>
@@ -188,15 +185,15 @@ export default function App() {
         {/* Filter & Search Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           {/* Categories Pill Scroller */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat
                     ? 'bg-orange-600 text-white shadow-sm shadow-orange-500/30'
-                    : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800'
+                    : 'bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800'
                 }`}
               >
                 {cat} {cat === '전체' ? `(${SESSIONS_DATA.length})` : ''}
@@ -206,19 +203,19 @@ export default function App() {
 
           {/* Search Box & View Toggle */}
           <div className="flex items-center gap-3">
-            <div className="relative flex-1 sm:w-64">
-              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+            <div className="relative flex-1 sm:w-72">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="세션명, eBPF, Karpenter, TPU 검색..."
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-orange-500"
+                className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-orange-500"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white text-xs"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-sm font-bold"
                 >
                   ✕
                 </button>
@@ -228,7 +225,7 @@ export default function App() {
             <div className="flex items-center rounded-xl bg-slate-900 border border-slate-800 p-1">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                className={`p-2 rounded-lg transition-colors cursor-pointer ${
                   viewMode === 'grid' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-slate-200'
                 }`}
                 title="그리드 뷰"
@@ -237,7 +234,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                className={`p-2 rounded-lg transition-colors cursor-pointer ${
                   viewMode === 'list' ? 'bg-orange-600 text-white' : 'text-slate-400 hover:text-slate-200'
                 }`}
                 title="리스트 뷰"
@@ -291,80 +288,82 @@ export default function App() {
                   setActiveSession(session);
                   setSessionModalInitialTab('screen');
                 }}
-                className="group p-5 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 transition-all flex flex-col md:flex-row gap-5 cursor-pointer shadow-md"
+                className="group p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all flex flex-col md:flex-row gap-5 cursor-pointer shadow-md"
               >
-                <div className="w-full md:w-64 aspect-video rounded-xl overflow-hidden bg-black shrink-0 relative">
+                <div className="w-full md:w-72 aspect-video rounded-xl overflow-hidden bg-black shrink-0 relative">
                   <img
                     src={`https://img.youtube.com/vi/${session.videoId}/mqdefault.jpg`}
                     alt={session.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-2 left-2 bg-slate-950/80 text-white font-bold text-[10px] px-2 py-0.5 rounded">
+                  <div className="absolute top-2.5 left-2.5 bg-slate-950/90 text-white font-bold text-xs px-2.5 py-1 rounded-md border border-slate-700">
                     세션 {session.index}
                   </div>
-                  <div className="absolute bottom-2 right-2 bg-slate-950/80 text-white text-[10px] px-2 py-0.5 rounded">
+                  <div className="absolute bottom-2.5 right-2.5 bg-slate-950/90 text-white text-xs px-2 py-0.5 rounded-md border border-slate-700 font-mono">
                     {session.duration}
                   </div>
                 </div>
 
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-xs font-semibold text-orange-400">{session.category}</span>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-slate-800 text-slate-200 border border-slate-750">
+                        {session.category}
+                      </span>
                       <span className="text-slate-600">•</span>
-                      <span className="text-xs text-slate-400">{session.speaker}</span>
+                      <span className="text-xs text-slate-300 font-medium">{session.speaker}</span>
                     </div>
-                    <h3 className="text-base font-bold text-white group-hover:text-orange-400 transition-colors mb-2">
+                    <h3 className="text-lg font-bold text-white group-hover:text-orange-400 transition-colors mb-2 leading-snug break-keep">
                       {session.title}
                     </h3>
-                    <p className="text-xs text-slate-300 line-clamp-2 mb-3 leading-relaxed">
+                    <p className="text-sm text-slate-300 mb-4 leading-relaxed break-keep">
                       {session.summary}
                     </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                      <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800 flex items-center gap-2">
-                        <Monitor className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                        <span className="text-slate-300 truncate font-sans">
-                          <strong className="text-cyan-300 font-semibold mr-1">[화면]</strong>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm">
+                      <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 flex items-start gap-2.5">
+                        <Monitor className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+                        <span className="text-slate-300 font-sans leading-relaxed break-keep">
+                          <strong className="text-white font-bold mr-1.5">[화면 분석]</strong>
                           {session.screenAnalysis.headline}
                         </span>
                       </div>
-                      <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800 flex items-center gap-2">
-                        <Mic className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                        <span className="text-slate-300 truncate font-sans">
-                          <strong className="text-amber-300 font-semibold mr-1">[음성]</strong>
+                      <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 flex items-start gap-2.5">
+                        <Mic className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+                        <span className="text-slate-300 font-sans leading-relaxed break-keep">
+                          <strong className="text-white font-bold mr-1.5">[음성 분석]</strong>
                           {session.audioAnalysis.headline}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-3 mt-3 border-t border-slate-800/80">
-                    <div className="flex flex-wrap gap-1.5">
+                  <div className="flex items-center justify-between pt-4 mt-4 border-t border-slate-800">
+                    <div className="flex flex-wrap gap-2">
                       {session.techStack.map((t, i) => (
                         <span
                           key={i}
-                          className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono"
+                          className="text-xs px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 font-mono border border-slate-700/60"
                         >
                           {t}
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveSession(session);
                           setSessionModalInitialTab('architecture');
                         }}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-orange-950/40 hover:bg-orange-900/60 border border-orange-800/60 text-orange-400 text-xs font-semibold cursor-pointer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-950/30 hover:bg-orange-900/50 border border-orange-800/50 text-orange-400 text-xs font-bold cursor-pointer"
                         title="이 세션의 시스템 아키텍처 및 플로우 도식화 보기"
                       >
                         <Layers className="w-3.5 h-3.5" />
                         <span>📐 아키텍처 도식</span>
                       </button>
-                      <span className="text-xs font-bold text-orange-400 group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                        상세 보기 <ChevronRight className="w-3.5 h-3.5" />
+                      <span className="text-sm font-bold text-white group-hover:text-orange-400 group-hover:translate-x-1 transition-all flex items-center gap-1">
+                        상세 보기 <ChevronRight className="w-4 h-4" />
                       </span>
                     </div>
                   </div>
