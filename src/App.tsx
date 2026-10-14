@@ -32,7 +32,7 @@ import { MasterArchitectureDiagram } from './components/MasterArchitectureDiagra
 import { ShareModal } from './components/ShareModal.tsx';
 import { SESSIONS_DATA, PLAYLIST_INFO, SessionData } from './data/playlistData.ts';
 import { downloadStandaloneHtmlReport } from './utils/exportHtmlHelper.ts';
-import { AI_ENABLED } from './utils/urlHelper.ts';
+import { AI_ENABLED, IS_STATIC_SITE } from './utils/urlHelper.ts';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
@@ -126,14 +126,16 @@ export default function App() {
 
             {/* Quick Action Badges (Clear hierarchy, no rainbow clutter) */}
             <div className="flex flex-wrap items-center gap-3">
-              <button
-                onClick={downloadStandaloneHtmlReport}
-                className="flex items-center gap-2 px-5 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-xl shadow-orange-600/25 transition-all cursor-pointer border border-orange-500"
-                title="9대 세션 전체 아키텍처 토폴로지, 노드 스펙, 무삭제 녹취록이 담긴 단일 HTML 파일 즉시 다운로드"
-              >
-                <Download className="w-4 h-4 text-white" />
-                <span>📥 HTML 플레이북 다운로드 (오프라인 영구 보관용)</span>
-              </button>
+              {!IS_STATIC_SITE && (
+                <button
+                  onClick={downloadStandaloneHtmlReport}
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-xl shadow-orange-600/25 transition-all cursor-pointer border border-orange-500"
+                  title="9대 세션 전체 아키텍처 토폴로지, 노드 스펙, 무삭제 녹취록이 담긴 단일 HTML 파일 즉시 다운로드"
+                >
+                  <Download className="w-4 h-4 text-white" />
+                  <span>📥 HTML 플레이북 다운로드 (오프라인 영구 보관용)</span>
+                </button>
+              )}
 
               <button
                 onClick={() => setIsPlaybookOpen(true)}

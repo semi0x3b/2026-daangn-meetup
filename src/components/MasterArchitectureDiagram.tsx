@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { SESSIONS_DATA, SessionData } from '../data/playlistData.ts';
 import { downloadStandaloneHtmlReport } from '../utils/exportHtmlHelper.ts';
+import { IS_STATIC_SITE } from '../utils/urlHelper.ts';
 
 interface MasterArchitectureDiagramProps {
   isOpen: boolean;
@@ -127,14 +128,16 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={downloadStandaloneHtmlReport}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors cursor-pointer border border-emerald-400/50 shadow-sm"
-              title="오프라인 영구 보관용 단일 HTML 다운로드"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>HTML 파일 다운로드</span>
-            </button>
+            {!IS_STATIC_SITE && (
+              <button
+                onClick={downloadStandaloneHtmlReport}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors cursor-pointer border border-emerald-400/50 shadow-sm"
+                title="오프라인 영구 보관용 단일 HTML 다운로드"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>HTML 파일 다운로드</span>
+              </button>
+            )}
 
             <button
               onClick={handleCopyAscii}

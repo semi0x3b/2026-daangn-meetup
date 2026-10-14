@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Copy, Check, Download, FileText, Code2, Database, Globe, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 import { SESSIONS_DATA, PLAYLIST_INFO } from '../data/playlistData.ts';
 import { downloadStandaloneHtmlReport } from '../utils/exportHtmlHelper.ts';
+import { IS_STATIC_SITE } from '../utils/urlHelper.ts';
 
 interface FullReportModalProps {
   isOpen: boolean;
@@ -148,14 +149,16 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={downloadStandaloneHtmlReport}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors cursor-pointer shadow-md shadow-emerald-600/20"
-              title="팀원 공유용 단독 실행형 HTML 파일 (로그인/404 걱정 없이 더블클릭으로 열람 가능)"
-            >
-              <Globe className="w-3.5 h-3.5" />
-              <span>HTML 파일 다운로드</span>
-            </button>
+            {!IS_STATIC_SITE && (
+              <button
+                onClick={downloadStandaloneHtmlReport}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors cursor-pointer shadow-md shadow-emerald-600/20"
+                title="팀원 공유용 단독 실행형 HTML 파일 (로그인/404 걱정 없이 더블클릭으로 열람 가능)"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>HTML 파일 다운로드</span>
+              </button>
+            )}
 
             {viewTab === 'markdown' ? (
               <button
@@ -240,7 +243,10 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                   <span>2026 당근 빌더 밋업 SRE Day 9개 세션 전문 무생략 리포트</span>
                 </div>
                 <p className="text-slate-300 text-sm">
-                  코드 스니펫, 트러블슈팅 스토리, 음성 녹취 스크립트 등 모든 텍스트가 줄임표(...) 없이 100% 완전하게 출력됩니다. 상단의 <strong>[HTML 파일 다운로드]</strong>를 누르면 로그인 없이 팀원과 공유 가능한 오프라인 파일을 즉시 내려받을 수 있습니다.
+                  코드 스니펫, 트러블슈팅 스토리, 음성 녹취 스크립트 등 모든 텍스트가 줄임표(...) 없이 100% 완전하게 출력됩니다.
+                  {!IS_STATIC_SITE && (
+                    <> 상단의 <strong>[HTML 파일 다운로드]</strong>를 누르면 로그인 없이 팀원과 공유 가능한 오프라인 파일을 즉시 내려받을 수 있습니다.</>
+                  )}
                 </p>
               </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sparkles, MessageSquare, FileText, Youtube, Share2, Check, Download } from 'lucide-react';
 import { PLAYLIST_INFO, SESSIONS_DATA } from '../data/playlistData.ts';
-import { AI_ENABLED, getPublicShareUrl } from '../utils/urlHelper.ts';
+import { AI_ENABLED, IS_STATIC_SITE, getPublicShareUrl } from '../utils/urlHelper.ts';
 import { downloadStandaloneHtmlReport } from '../utils/exportHtmlHelper.ts';
 
 interface NavbarProps {
@@ -52,15 +52,17 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <button
-            onClick={downloadStandaloneHtmlReport}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 border border-emerald-400/50 rounded-lg shadow-sm shadow-emerald-600/30 transition-all cursor-pointer"
-            title="9개 세션 통합 오프라인 HTML 파일 다운로드"
-          >
-            <Download className="w-4 h-4 text-emerald-100" />
-            <span className="hidden sm:inline">HTML 다운로드</span>
-            <span className="sm:hidden">HTML</span>
-          </button>
+          {!IS_STATIC_SITE && (
+            <button
+              onClick={downloadStandaloneHtmlReport}
+              className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 border border-emerald-400/50 rounded-lg shadow-sm shadow-emerald-600/30 transition-all cursor-pointer"
+              title="9개 세션 통합 오프라인 HTML 파일 다운로드"
+            >
+              <Download className="w-4 h-4 text-emerald-100" />
+              <span className="hidden sm:inline">HTML 다운로드</span>
+              <span className="sm:hidden">HTML</span>
+            </button>
+          )}
 
           <button
             onClick={onOpenPlaybook}
