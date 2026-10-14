@@ -109,7 +109,7 @@ export default function App() {
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
               <span>YouTube 플레이리스트: {PLAYLIST_INFO.playlistId}</span>
               <span className="text-slate-600">•</span>
-              <span>총 9개 세션 전수 분석 완료</span>
+              <span>총 9개 세션</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
@@ -117,10 +117,10 @@ export default function App() {
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6 font-normal">
-              4,300만 명이 가입한 거대한 하이퍼로컬 서비스를 지탱하는 당근 SRE/플랫폼 엔지니어들의 9개 세션 
+              4,300만 명이 가입한 하이퍼로컬 서비스를 운영하는 당근 SRE/플랫폼 엔지니어들의 9개 세션 
               <strong className="text-white font-semibold"> 화면(슬라이드·도식·코드)</strong>과 
               <strong className="text-white font-semibold"> 음성(발표·트러블슈팅·성과)</strong>을 
-              우리 인프라에 바로 적용할 수 있도록 설계된 실무 플레이북 & 요약 대시보드입니다.
+              우리 인프라에 적용할 수 있게 정리한 플레이북과 요약 대시보드입니다.
             </p>
 
             {/* Quick Action Badges (Clear hierarchy, no rainbow clutter) */}
@@ -129,10 +129,10 @@ export default function App() {
                 <button
                   onClick={downloadStandaloneHtmlReport}
                   className="flex items-center gap-2 px-5 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-sm shadow-xl shadow-orange-600/25 transition-all cursor-pointer border border-orange-500"
-                  title="9대 세션 전체 아키텍처 토폴로지, 노드 스펙, 무삭제 녹취록이 담긴 단일 HTML 파일 즉시 다운로드"
+                  title="9개 세션의 아키텍처 토폴로지, 노드 스펙, 녹취록이 담긴 단일 HTML 파일 다운로드"
                 >
                   <Download className="w-4 h-4 text-white" />
-                  <span>📥 HTML 플레이북 다운로드 (오프라인 영구 보관용)</span>
+                  <span>HTML 플레이북 다운로드 (오프라인용)</span>
                 </button>
               )}
 
@@ -140,14 +140,14 @@ export default function App() {
                 onClick={() => setIsPlaybookOpen(true)}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold text-sm border border-slate-700 transition-colors cursor-pointer"
               >
-                <span>🛠️ 실전 인프라 도입 플레이북</span>
+                <span>인프라 도입 플레이북</span>
               </button>
 
               <button
                 onClick={() => setIsArchitectureOpen(true)}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-100 font-bold text-sm border border-slate-700 transition-colors cursor-pointer"
               >
-                <span>🗺️ 전체 아키텍처 토폴로지</span>
+                <span>전체 아키텍처 토폴로지</span>
               </button>
 
               <button
@@ -365,7 +365,7 @@ export default function App() {
             출처: <strong className="text-slate-300">당근(Karrot) 2026 빌더 밋업 | SRE Day</strong> 공식 발표 영상
           </p>
           <p className="text-[11px] text-slate-500">
-            모든 요약과 분석은 실제 발표 화면의 슬라이드/아키텍처/코드 및 발표자 발화 내용(트러블슈팅/수치 성과)을 기반으로 정밀하게 구조화되었습니다.
+            모든 요약과 분석은 실제 발표 화면의 슬라이드/아키텍처/코드 및 발표자 발화 내용(트러블슈팅/수치 성과)을 기반으로 구조화했습니다.
           </p>
         </div>
       </main>

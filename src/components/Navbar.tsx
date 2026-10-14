@@ -41,11 +41,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="flex items-center gap-2">
               <span className="font-bold text-white text-base tracking-tight">당근 SRE Day</span>
               <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 text-[11px] font-semibold px-2 py-0.5 rounded-full">
-                실전 플레이북
+                플레이북
               </span>
             </div>
             <p className="text-xs text-slate-400 hidden sm:block">
-              2026 빌더 밋업 인프라 인사이트 & 우리 팀 실무 적용 가이드
+              2026 빌더 밋업 인프라 인사이트와 적용 가이드
             </p>
           </div>
         </div>
@@ -67,18 +67,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={onOpenPlaybook}
             className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-orange-300 bg-orange-950/40 hover:bg-orange-900/60 border border-orange-700/60 rounded-lg transition-colors cursor-pointer"
-            title="우리 인프라에 적용하는 실전 플레이북"
+            title="우리 인프라에 적용하는 플레이북"
           >
-            <span>🛠️ 실무 플레이북</span>
+            <span>플레이북</span>
           </button>
 
           <button
             onClick={onOpenReport}
             className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-200 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 rounded-lg transition-colors cursor-pointer"
-            title="전체 9개 세션 통합 요약 리포트 및 원본 JSON 보기"
+            title="전체 세션 요약 리포트와 원본 JSON 보기"
           >
             <FileText className="w-4 h-4 text-amber-400" />
-            <span className="hidden md:inline">통합 리포트</span>
+            <span className="hidden md:inline">요약 리포트</span>
             <span className="md:hidden">리포트</span>
           </button>
 

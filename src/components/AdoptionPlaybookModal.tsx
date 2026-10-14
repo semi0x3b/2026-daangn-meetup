@@ -58,8 +58,8 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">당근 SRE 인사이트 실무 도입 플레이북</h3>
-              <p className="text-xs text-slate-400">우리 회사 인프라에 바로 따라 해보는 단계별 실전 액션 플랜</p>
+              <h3 className="text-base font-bold text-white">당근 SRE 인사이트 도입 플레이북</h3>
+              <p className="text-xs text-slate-400">우리 회사 인프라에 따라 해볼 수 있는 단계별 실행 계획</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -122,7 +122,7 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
           <div className="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
               <Check className="w-4 h-4 text-emerald-400" />
-              <span>당근 SRE 팀이 현장에서 실제로 구축한 것들 (What They Did)</span>
+              <span>당근 SRE 팀이 구축한 것들</span>
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {currentTrack.whatDaangnDid.map((item, idx) => (
@@ -138,7 +138,7 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
           <div className="space-y-4">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
               <ArrowRight className="w-4 h-4 text-orange-400" />
-              <span>우리가 따라할 수 있는 단계별 실행 가이드 (How We Can Adopt)</span>
+              <span>우리가 따라할 수 있는 단계별 실행 가이드</span>
             </h4>
 
             {currentTrack.howToAdopt.map((step, idx) => (

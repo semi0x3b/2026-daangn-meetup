@@ -155,7 +155,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                   }`}
                 >
                   <Play className="w-3.5 h-3.5 fill-current" />
-                  <span>직접 재생 모드 (오류 해결)</span>
+                  <span>직접 재생 모드</span>
                 </button>
               </div>
 
@@ -205,10 +205,10 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                     {session.title}
                   </h4>
                   <p className="mt-1.5 text-sm text-slate-200">
-                    클릭하면 유튜브 본 사이트에서 구성 오류 없이 고화질로 즉시 재생됩니다
+                    클릭하면 YouTube 사이트에서 바로 재생됩니다
                   </p>
                   <span className="mt-3.5 text-xs font-bold text-white bg-red-600 hover:bg-red-500 px-4 py-1.5 rounded-xl shadow-lg">
-                    ▶ YouTube에서 바로 보기 (오류 0%)
+                    ▶ YouTube에서 바로 보기
                   </span>
                 </div>
               </div>
@@ -216,9 +216,9 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
 
             {/* Error Guidance Callout */}
             <div className="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              <span className="text-orange-400 font-bold shrink-0">💡 안내:</span>
+              <span className="text-orange-400 font-bold shrink-0">안내:</span>
               <span>
-                브라우저나 샌드박스 정책으로 인해 임베드 화면에서 <em>'동영상 플레이어 구성 오류'</em>가 표시될 경우, 상단 <strong>[직접 재생 모드]</strong> 또는 우측의 <strong>[YouTube 원본 전체화면 열기 ↗]</strong>를 클릭하시면 제약 없이 100% 정상 시청하실 수 있습니다.
+                브라우저나 샌드박스 정책으로 인해 임베드 화면에서 <em>'동영상 플레이어 구성 오류'</em>가 표시될 경우, 상단 <strong>[직접 재생 모드]</strong> 또는 우측의 <strong>[YouTube 원본 전체화면 열기 ↗]</strong>를 클릭하면 정상적으로 시청할 수 있습니다.
               </span>
             </div>
           </div>
@@ -259,7 +259,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                 }`}
               >
                 <Layers className="w-4 h-4 text-orange-400" />
-                <span>📐 아키텍처 & 플로우 도식화</span>
+                <span>아키텍처·플로우 도식</span>
               </button>
 
               <button
@@ -271,7 +271,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                 }`}
               >
                 <Monitor className="w-4 h-4" />
-                <span>🖥️ 화면(Visual) 요약</span>
+                <span>화면 요약</span>
               </button>
 
               <button
@@ -283,7 +283,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                 }`}
               >
                 <Mic className="w-4 h-4" />
-                <span>🎙️ 음성(Audio) 요약</span>
+                <span>음성 요약</span>
               </button>
 
               <button
@@ -295,7 +295,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                 }`}
               >
                 <FileText className="w-4 h-4" />
-                <span>📜 전체 음성 녹취 스크립트</span>
+                <span>전체 음성 녹취 스크립트</span>
               </button>
 
               <button
@@ -307,7 +307,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                 }`}
               >
                 <Lightbulb className="w-4 h-4" />
-                <span>🎯 실전 교훈 & 체크리스트</span>
+                <span>교훈과 체크리스트</span>
               </button>
             </nav>
           </div>
@@ -382,7 +382,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
                 <div className="flex items-center gap-2 text-orange-400 font-bold text-sm">
                   <Mic className="w-4 h-4" />
-                  <span>발표자 육성 핵심 메시지</span>
+                  <span>발표자 핵심 메시지</span>
                 </div>
                 <h4 className="text-lg sm:text-xl font-bold text-white leading-snug">
                   {session.audioAnalysis.headline}
@@ -396,7 +396,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
                 <div className="flex items-center gap-2 text-orange-400 font-bold text-sm">
                   <AlertTriangle className="w-4 h-4" />
-                  <span>현장 트러블슈팅 & 실패 경험담</span>
+                  <span>현장 트러블슈팅과 실패 경험담</span>
                 </div>
                 <p className="text-base text-slate-200 leading-relaxed">
                   {session.audioAnalysis.troubleshootingStory}
@@ -423,7 +423,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-2">
                 <div className="flex items-center gap-2 text-orange-400 font-bold text-sm">
                   <Lightbulb className="w-4 h-4" />
-                  <span>발표자가 다른 팀에 전하는 실전 조언</span>
+                  <span>발표자가 다른 팀에 전하는 조언</span>
                 </div>
                 <p className="text-base text-slate-200 leading-relaxed italic font-medium bg-slate-950 p-4 rounded-xl border border-slate-800">
                   "{session.audioAnalysis.speakerAdvice}"
@@ -438,7 +438,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
               <div className="flex items-center justify-between bg-slate-950 p-4 rounded-xl border border-slate-800">
                 <div className="flex items-center gap-2 text-sm text-slate-200 font-medium">
                   <FileText className="w-4 h-4 text-orange-400" />
-                  <span>발표자의 타임라인별 구두 발화 전체 녹취록 스크립트 ({session.fullTranscript?.length || 0}개 구간)</span>
+                  <span>타임라인별 전체 녹취 스크립트 ({session.fullTranscript?.length || 0}개 구간)</span>
                 </div>
                 <button
                   onClick={handleCopyTranscript}
@@ -486,7 +486,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
                 <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                   <Lightbulb className="w-5 h-5 text-orange-400" />
-                  <span>이 세션에서 반드시 기억해야 할 3가지 원칙</span>
+                  <span>이 세션에서 기억할 3가지 원칙</span>
                 </h4>
                 <div className="space-y-3">
                   {session.keyTakeaways.map((takeaway, idx) => (
@@ -503,7 +503,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
               {/* Tech Stack Tags */}
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
                 <div className="text-sm font-bold text-slate-300 uppercase tracking-wider font-mono">
-                  적용된 주요 기술 스택 & 오픈소스
+                  적용된 기술 스택과 오픈소스
                 </div>
                 <div className="flex flex-wrap gap-2.5">
                   {session.techStack.map((tech, idx) => (
@@ -524,7 +524,7 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3.5">
               <div className="flex items-center gap-2 text-orange-400 font-bold text-sm uppercase tracking-wider">
                 <Sparkles className="w-4 h-4" />
-                <span>AI 아키텍트에게 이 세션 심층 질문하기</span>
+                <span>AI 아키텍트에게 이 세션 질문하기</span>
               </div>
               <div className="grid grid-cols-1 gap-2.5">
                 {session.recommendedQuestions.map((q, idx) => (

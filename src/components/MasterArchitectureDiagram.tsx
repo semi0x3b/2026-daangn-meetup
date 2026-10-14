@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   X,
+  Map as MapIcon,
   Layers,
   ArrowRight,
   ExternalLink,
@@ -38,7 +39,7 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
 
   const asciiArchitecture = `
 ===================================================================================================================
-                🥕 2026 당근 SRE Day: 차세대 하이퍼로컬 인프라 전체 아키텍처 토폴로지 (9대 세션 융합)
+                2026 당근 SRE Day: 하이퍼로컬 인프라 전체 아키텍처 토폴로지 (9개 세션 통합)
 ===================================================================================================================
 
 [1. 개발자 환경 & 배포 오케스트레이션]
@@ -67,7 +68,7 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
  └───────────────────────────────────────────────────┘    └──────────────────────────────────────────────────────┘
               │                                                                     │
               ▼                                                                     ▼
-[4. 차세대 AI 관측성 (Observability) 계층]
+[4. AI 관측성 계층]
  ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
  │ 세션 5: AI 시대의 옵저버빌리티 재설계 (Grafana 800개 대시보드 걷어내기)                                       │
  │ • 원천 텔레메트리(Prometheus/Mimir 메트릭 + Tempo 트레이스 + Loki 로그) -> AI Observability Agent 파이프라인 │
@@ -112,13 +113,13 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
         <div className="p-4 sm:p-6 border-b border-slate-800 bg-slate-950/80 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 text-white flex items-center justify-center shadow-lg shadow-orange-500/20 font-black text-xl">
-              🗺️
+              <MapIcon className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base sm:text-lg font-bold text-white">당근 SRE 차세대 인프라 전체 아키텍처 구성도</h3>
+                <h3 className="text-base sm:text-lg font-bold text-white">당근 SRE 인프라 전체 아키텍처 구성도</h3>
                 <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">
-                  9대 세션 통합 맵
+                  9개 세션 맵
                 </span>
               </div>
               <p className="text-xs text-slate-400">
@@ -132,7 +133,7 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
               <button
                 onClick={downloadStandaloneHtmlReport}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors cursor-pointer border border-emerald-400/50 shadow-sm"
-                title="오프라인 영구 보관용 단일 HTML 다운로드"
+                title="오프라인용 단일 HTML 다운로드"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>HTML 파일 다운로드</span>
@@ -389,7 +390,7 @@ export const MasterArchitectureDiagram: React.FC<MasterArchitectureDiagramProps>
                   <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-xs">
                     L4
                   </span>
-                  <h4 className="text-base sm:text-lg font-bold text-white">차세대 AI 옵저버빌리티 & 장애 대응 계층</h4>
+                  <h4 className="text-base sm:text-lg font-bold text-white">AI 옵저버빌리티·장애 대응 계층</h4>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs sm:text-sm text-slate-300 font-mono">MTTR 45분 → 8분 (-82%)</span>

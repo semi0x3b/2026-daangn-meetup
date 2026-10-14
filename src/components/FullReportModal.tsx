@@ -43,20 +43,20 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
 
   // Generate full markdown report with 100% full content (NO truncation)
   const generateMarkdownReport = () => {
-    let md = `# 🥕 2026 당근 빌더 밋업 | SRE Day 플레이리스트 화면·음성 통합 심층 요약 리포트\n\n`;
+    let md = `# 2026 당근 빌더 밋업 | SRE Day 플레이리스트 화면·음성 요약 리포트\n\n`;
     md += `- **재생목록 URL**: ${PLAYLIST_INFO.youtubeUrl}\n`;
     md += `- **주최/채널**: ${PLAYLIST_INFO.channel}\n`;
     md += `- **행사 일자**: ${PLAYLIST_INFO.eventDate}\n`;
-    md += `- **분석 세션 수**: 총 ${PLAYLIST_INFO.totalVideos}개 세션 전수 분석 완료\n\n`;
+    md += `- **분석 세션 수**: 총 ${PLAYLIST_INFO.totalVideos}개 세션\n\n`;
     md += `---\n\n`;
 
     SESSIONS_DATA.forEach((s) => {
       md += `## 세션 ${s.index}. ${s.title}\n`;
       md += `- **영상 링크**: https://www.youtube.com/watch?v=${s.videoId}\n`;
       md += `- **발표자**: ${s.speaker} | **카테고리**: ${s.category} | **재생시간**: ${s.duration} | **조회수**: ${s.views}\n\n`;
-      md += `### 📌 핵심 요약\n${s.summary}\n\n`;
+      md += `### 핵심 요약\n${s.summary}\n\n`;
 
-      md += `### 🖥️ 화면(Visual / Slide / Code) 분석\n`;
+      md += `### 화면(슬라이드·코드) 분석\n`;
       md += `- **화면 핵심 헤드라인**: ${s.screenAnalysis.headline}\n`;
       md += `- **아키텍처 및 도식 설명**: ${s.screenAnalysis.diagramDescription}\n`;
       if (s.screenAnalysis.codeSnippet) {
@@ -68,26 +68,26 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
       });
       md += `\n`;
 
-      md += `### 🎙️ 음성(Audio / Spoken Insights) 분석\n`;
+      md += `### 음성 분석\n`;
       md += `- **발표자 핵심 메시지**: ${s.audioAnalysis.headline}\n`;
       md += `- **도입 배경 및 구두 설명**: ${s.audioAnalysis.spokenContext}\n`;
-      md += `- **현장 트러블슈팅 & 실패 극복기 (전문)**: ${s.audioAnalysis.troubleshootingStory}\n`;
+      md += `- **현장 트러블슈팅과 극복 과정**: ${s.audioAnalysis.troubleshootingStory}\n`;
       md += `- **정량적 개선 성과**:\n`;
       s.audioAnalysis.quantitativeResults.forEach((res) => {
         md += `  * ${res}\n`;
       });
-      md += `- **발표자의 실전 조언**: "${s.audioAnalysis.speakerAdvice}"\n\n`;
+      md += `- **발표자 조언**: "${s.audioAnalysis.speakerAdvice}"\n\n`;
 
-      md += `### 💡 핵심 키워드 & 테크 스택\n`;
+      md += `### 핵심 키워드와 기술 스택\n`;
       md += `${s.techStack.map((t) => `\`${t}\``).join(', ')}\n\n`;
 
-      md += `### 🎯 실전 도입 체크리스트 (Key Takeaways)\n`;
+      md += `### 도입 체크리스트\n`;
       s.keyTakeaways.forEach((k, idx) => {
         md += `${idx + 1}. ${k}\n`;
       });
       md += `\n`;
 
-      md += `### 📜 전체 음성 녹취 스크립트 전문\n`;
+      md += `### 전체 음성 녹취 스크립트\n`;
       s.fullTranscript.forEach((t) => {
         md += `- [${t.time}] **${t.speaker}**: ${t.text}\n`;
       });
@@ -139,12 +139,12 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-white">전체 세션 데이터 뷰어 & 내보내기</h3>
+                <h3 className="text-base font-bold text-white">세션 데이터 보기·내보내기</h3>
                 <span className="text-[11px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded-full">
-                  전문 100% 출력 (생략 없음)
+                  생략 없이 전문 출력
                 </span>
               </div>
-              <p className="text-xs text-slate-400">마크다운 리포트, 전체 JSON 로우 데이터, 단일 HTML 오프라인 파일</p>
+              <p className="text-xs text-slate-400">마크다운 리포트, 전체 JSON 원본 데이터, 단일 HTML 오프라인 파일</p>
             </div>
           </div>
 
@@ -153,7 +153,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
               <button
                 onClick={downloadStandaloneHtmlReport}
                 className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors cursor-pointer shadow-md shadow-emerald-600/20"
-                title="팀원 공유용 단독 실행형 HTML 파일 (로그인/404 걱정 없이 더블클릭으로 열람 가능)"
+                title="팀원 공유용 단독 실행 HTML 파일 (더블클릭으로 열람)"
               >
                 <Globe className="w-3.5 h-3.5" />
                 <span>HTML 파일 다운로드</span>
@@ -207,7 +207,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
             }`}
           >
             <FileText className="w-4 h-4" />
-            <span>📄 리포트 형식 뷰 (코드 & 트러블슈팅 전문)</span>
+            <span>리포트 형식 보기</span>
           </button>
 
           <button
@@ -219,7 +219,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
             }`}
           >
             <Code2 className="w-4 h-4" />
-            <span>📦 전체 JSON 로우 데이터</span>
+            <span>전체 JSON 원본 데이터</span>
           </button>
         </div>
 
@@ -228,7 +228,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
           {viewTab === 'json' ? (
             <div className="space-y-3">
               <div className="flex items-center justify-between text-sm text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800">
-                <span>총 9개 세션의 화면(Screen), 음성(Audio), 타임스탬프, 코드 스니펫 원본 JSON 트리</span>
+                <span>총 9개 세션의 화면, 음성, 타임스탬프, 코드 스니펫 원본 JSON 트리</span>
                 <span className="text-orange-400 font-mono text-xs font-bold bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/30">{SESSIONS_DATA.length} items</span>
               </div>
               <pre className="p-5 rounded-2xl bg-slate-950 border border-slate-800 text-xs sm:text-sm font-mono text-slate-200 overflow-x-auto leading-relaxed max-h-[65vh] select-all">
@@ -240,12 +240,12 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
               <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 text-sm text-slate-200 leading-relaxed space-y-1.5 shadow-md">
                 <div className="flex items-center gap-2 font-bold text-white text-base">
                   <Sparkles className="w-4 h-4 text-orange-400" />
-                  <span>2026 당근 빌더 밋업 SRE Day 9개 세션 전문 무생략 리포트</span>
+                  <span>2026 당근 빌더 밋업 SRE Day 9개 세션 전문 리포트</span>
                 </div>
                 <p className="text-slate-300 text-sm">
-                  코드 스니펫, 트러블슈팅 스토리, 음성 녹취 스크립트 등 모든 텍스트가 줄임표(...) 없이 100% 완전하게 출력됩니다.
+                  코드 스니펫, 트러블슈팅 스토리, 음성 녹취 스크립트 등 모든 텍스트가 줄임표(...) 없이 그대로 출력됩니다.
                   {!IS_STATIC_SITE && (
-                    <> 상단의 <strong>[HTML 파일 다운로드]</strong>를 누르면 로그인 없이 팀원과 공유 가능한 오프라인 파일을 즉시 내려받을 수 있습니다.</>
+                    <> 상단의 <strong>[HTML 파일 다운로드]</strong>를 누르면 로그인 없이 팀원과 공유 가능한 오프라인 파일을 내려받을 수 있습니다.</>
                   )}
                 </p>
               </div>
@@ -270,7 +270,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                     </div>
 
                     <div className="p-4 sm:p-5 rounded-xl bg-slate-950 border border-slate-800 text-sm sm:text-base text-slate-200 leading-relaxed">
-                      <strong className="text-orange-400 block mb-1.5 font-bold">📌 핵심 아키텍처 및 개요:</strong>
+                      <strong className="text-orange-400 block mb-1.5 font-bold">핵심 아키텍처 및 개요:</strong>
                       {s.summary}
                     </div>
 
@@ -279,7 +279,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                       {/* Screen */}
                       <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3.5">
                         <div className="text-sm font-bold text-white flex items-center justify-between">
-                          <span>🖥️ 슬라이드 화면(Visual) 분석</span>
+                          <span>슬라이드 화면 분석</span>
                           <span className="text-xs font-mono text-orange-400 bg-orange-950/40 px-2.5 py-1 rounded-md border border-orange-800/60">
                             Slide & Code
                           </span>
@@ -337,7 +337,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                       {/* Audio */}
                       <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3.5">
                         <div className="text-sm font-bold text-white flex items-center justify-between">
-                          <span>🎙️ 발표자 음성(Audio) 인사이트</span>
+                          <span>발표자 음성 인사이트</span>
                           <span className="text-xs font-mono text-orange-400 bg-orange-950/40 px-2.5 py-1 rounded-md border border-orange-800/60">
                             Spoken Context
                           </span>
@@ -350,7 +350,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                         {/* Full Troubleshooting Story (NO Truncation) */}
                         <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
                           <span className="text-xs font-bold text-orange-400 flex items-center gap-1.5 uppercase font-mono tracking-wider">
-                            <span>🛠️ 현장 트러블슈팅 스토리 (전문)</span>
+                            <span>현장 트러블슈팅 스토리</span>
                           </span>
                           <p className="text-sm text-slate-200 leading-relaxed whitespace-pre-line">
                             {s.audioAnalysis.troubleshootingStory}
@@ -359,7 +359,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
 
                         {/* Speaker Advice */}
                         <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm text-slate-200">
-                          <strong className="text-orange-400 block mb-1 font-bold">💡 발표자 실전 조언:</strong>
+                          <strong className="text-orange-400 block mb-1 font-bold">발표자 조언:</strong>
                           <p className="italic text-slate-100">"{s.audioAnalysis.speakerAdvice}"</p>
                         </div>
                       </div>
@@ -368,7 +368,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                     {/* Key Takeaways */}
                     <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
                       <div className="text-sm font-bold text-white flex flex-wrap items-center justify-between gap-2">
-                        <span>🎯 실전 도입 체크리스트 (Key Takeaways)</span>
+                        <span>도입 체크리스트</span>
                         <div className="flex flex-wrap gap-2">
                           {s.audioAnalysis.quantitativeResults.map((r, i) => (
                             <span
@@ -397,7 +397,7 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                       >
                         <span className="flex items-center gap-2">
                           <FileText className="w-4 h-4 text-orange-400" />
-                          <span>전체 음성 녹취 스크립트 전문 ({s.fullTranscript.length}개 발언 구간)</span>
+                          <span>전체 음성 녹취 스크립트 ({s.fullTranscript.length}개 발언 구간)</span>
                         </span>
                         {expandedTranscripts[s.id] ? (
                           <span className="flex items-center gap-1 text-orange-400 text-xs">
