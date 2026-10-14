@@ -1,16 +1,15 @@
 import React from 'react';
-import { Play, Monitor, Mic, Clock, Eye, Sparkles, ChevronRight, ExternalLink, Layers } from 'lucide-react';
+import { Play, Monitor, Mic, Clock, Eye, Sparkles, ChevronRight, ExternalLink } from 'lucide-react';
 import { SessionData } from '../data/playlistData.ts';
 import { AI_ENABLED } from '../utils/urlHelper.ts';
 
 interface SessionCardProps {
   session: SessionData;
   onSelect: (session: SessionData) => void;
-  onSelectArchitecture?: (session: SessionData) => void;
   onQuickAsk: (session: SessionData, question: string) => void;
 }
 
-export const SessionCard: React.FC<SessionCardProps> = ({ session, onSelect, onSelectArchitecture, onQuickAsk }) => {
+export const SessionCard: React.FC<SessionCardProps> = ({ session, onSelect, onQuickAsk }) => {
   return (
     <div className="group relative flex flex-col rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all duration-200 overflow-hidden shadow-lg shadow-black/20">
       {/* Top Banner with Thumbnail & Duration */}
@@ -105,15 +104,6 @@ export const SessionCard: React.FC<SessionCardProps> = ({ session, onSelect, onS
 
         {/* Footer Actions */}
         <div className="pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
-          <button
-            onClick={() => onSelectArchitecture ? onSelectArchitecture(session) : onSelect(session)}
-            className="flex items-center gap-1.5 py-2.5 px-3 text-sm font-semibold text-orange-400 bg-orange-950/30 hover:bg-orange-900/50 border border-orange-800/50 rounded-xl transition-colors cursor-pointer"
-            title="이 세션의 시스템 아키텍처 및 플로우 도식화 보기"
-          >
-            <Layers className="w-4 h-4 text-orange-400" />
-            <span>📐 아키텍처 도식</span>
-          </button>
-
           <button
             onClick={() => onSelect(session)}
             className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3.5 text-sm font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition-colors cursor-pointer"
