@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AI_ENABLED } from '../utils/urlHelper.ts';
 import {
   X,
   Copy,
@@ -319,22 +320,24 @@ steps:
           </div>
 
           {/* Ask AI button for this track */}
-          <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div>
-              <div className="text-xs font-bold text-orange-400">우리 회사 환경 맞춤 컨설팅이 필요한가요?</div>
-              <div className="text-[11px] text-slate-400">"{currentTrack.title}" 도입 시 주의해야 할 사전 제약 사항 질문하기</div>
+          {AI_ENABLED && (
+            <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <div className="text-xs font-bold text-orange-400">우리 회사 환경 맞춤 컨설팅이 필요한가요?</div>
+                <div className="text-[11px] text-slate-400">"{currentTrack.title}" 도입 시 주의해야 할 사전 제약 사항 질문하기</div>
+              </div>
+              <button
+                onClick={() => {
+                  onClose();
+                  onOpenChatWithTopic(`우리 회사 인프라에 ${currentTrack.title}을 도입하려고 해. 현재 우리가 사전 점검해야 할 필수 전제 조건과 점진적 마이그레이션 팁을 알려줘.`);
+                }}
+                className="px-3.5 py-2 bg-orange-600 hover:bg-orange-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>AI에게 도입 질의하기</span>
+              </button>
             </div>
-            <button
-              onClick={() => {
-                onClose();
-                onOpenChatWithTopic(`우리 회사 인프라에 ${currentTrack.title}을 도입하려고 해. 현재 우리가 사전 점검해야 할 필수 전제 조건과 점진적 마이그레이션 팁을 알려줘.`);
-              }}
-              className="px-3.5 py-2 bg-orange-600 hover:bg-orange-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>AI에게 도입 질의하기</span>
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </div>

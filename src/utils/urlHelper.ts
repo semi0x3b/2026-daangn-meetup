@@ -1,4 +1,10 @@
 /**
+ * AI Q&A needs the Express server (/api/chat). Static builds (GitHub Pages)
+ * set VITE_STATIC_SITE=true to hide every AI entry point.
+ */
+export const AI_ENABLED = import.meta.env.VITE_STATIC_SITE !== 'true';
+
+/**
  * Utility to get the public, shareable URL for the application.
  * In AI Studio, 'ais-dev-' URLs are developer-only private sandbox endpoints
  * that return 404 or authentication errors when opened in new tabs or shared.
@@ -16,7 +22,10 @@ export function getPublicShareUrl(subpath: string = ''): string {
     origin = origin.replace('ais-dev-', 'ais-pre-');
   }
 
+  // GitHub Pages serves under /<repo>/ — BASE_URL is '/' everywhere else
+  const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+
   // Ensure clean formatting
   const cleanPath = subpath ? (subpath.startsWith('/') ? subpath : `/${subpath}`) : '';
-  return `${origin}${cleanPath}`;
+  return `${origin}${basePath}${cleanPath}`;
 }

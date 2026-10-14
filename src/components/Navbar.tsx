@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sparkles, MessageSquare, FileText, Youtube, Share2, Check, Download } from 'lucide-react';
 import { PLAYLIST_INFO, SESSIONS_DATA } from '../data/playlistData.ts';
-import { getPublicShareUrl } from '../utils/urlHelper.ts';
+import { AI_ENABLED, getPublicShareUrl } from '../utils/urlHelper.ts';
 import { downloadStandaloneHtmlReport } from '../utils/exportHtmlHelper.ts';
 
 interface NavbarProps {
@@ -80,13 +80,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="md:hidden">리포트</span>
           </button>
 
-          <button
-            onClick={onOpenChat}
-            className="flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 rounded-lg shadow-sm shadow-orange-500/30 transition-all cursor-pointer"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>AI Q&A</span>
-          </button>
+          {AI_ENABLED && (
+            <button
+              onClick={onOpenChat}
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 rounded-lg shadow-sm shadow-orange-500/30 transition-all cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>AI Q&A</span>
+            </button>
+          )}
 
           <a
             href={PLAYLIST_INFO.youtubeUrl}
