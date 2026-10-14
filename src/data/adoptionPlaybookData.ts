@@ -153,7 +153,7 @@ export XLA_FLAGS="--xla_gpu_enable_latency_hiding_scheduler=true"
   },
   {
     id: 'track-3',
-    title: '트랙 3. 차세대 관측성(Observability) & eBPF',
+    title: '트랙 3. 관측성과 eBPF',
     shortTitle: 'AI 옵저버빌리티 & eBPF',
     sessions: '세션 5 (Grafana 걷어낸 에이전트 얼럿) & 세션 6 (eBPF 커널 계측)',
     iconName: 'Layers',

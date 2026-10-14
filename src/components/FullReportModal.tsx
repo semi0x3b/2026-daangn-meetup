@@ -144,7 +144,9 @@ export const FullReportModal: React.FC<FullReportModalProps> = ({ isOpen, onClos
                   생략 없이 전문 출력
                 </span>
               </div>
-              <p className="text-xs text-slate-400">마크다운 리포트, 전체 JSON 원본 데이터, 단일 HTML 오프라인 파일</p>
+              <p className="text-xs text-slate-400">
+                마크다운 리포트, 전체 JSON 원본 데이터{IS_STATIC_SITE ? '' : ', 단일 HTML 오프라인 파일'}
+              </p>
             </div>
           </div>
 
