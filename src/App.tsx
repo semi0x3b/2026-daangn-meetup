@@ -17,7 +17,6 @@ import {
   ChevronRight,
   PlusCircle,
   HelpCircle,
-  Layers,
   Download
 } from 'lucide-react';
 import { Navbar } from './components/Navbar.tsx';
@@ -276,10 +275,6 @@ export default function App() {
                   setActiveSession(s);
                   setSessionModalInitialTab('screen');
                 }}
-                onSelectArchitecture={(s) => {
-                  setActiveSession(s);
-                  setSessionModalInitialTab('architecture');
-                }}
                 onQuickAsk={(s, q) => handleOpenChatWithQuestion(s, q)}
               />
             ))}
@@ -354,23 +349,9 @@ export default function App() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveSession(session);
-                          setSessionModalInitialTab('architecture');
-                        }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-950/30 hover:bg-orange-900/50 border border-orange-800/50 text-orange-400 text-xs font-bold cursor-pointer"
-                        title="이 세션의 시스템 아키텍처 및 플로우 도식화 보기"
-                      >
-                        <Layers className="w-3.5 h-3.5" />
-                        <span>📐 아키텍처 도식</span>
-                      </button>
-                      <span className="text-sm font-bold text-white group-hover:text-orange-400 group-hover:translate-x-1 transition-all flex items-center gap-1">
-                        상세 보기 <ChevronRight className="w-4 h-4" />
-                      </span>
-                    </div>
+                    <span className="text-sm font-bold text-white group-hover:text-orange-400 group-hover:translate-x-1 transition-all flex items-center gap-1">
+                      상세 보기 <ChevronRight className="w-4 h-4" />
+                    </span>
                   </div>
                 </div>
               </div>
