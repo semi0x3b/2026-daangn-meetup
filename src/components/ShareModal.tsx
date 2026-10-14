@@ -16,7 +16,7 @@ import {
   Layers,
   HelpCircle
 } from 'lucide-react';
-import { getPublicShareUrl } from '../utils/urlHelper.ts';
+import { IS_STATIC_SITE, getPublicShareUrl } from '../utils/urlHelper.ts';
 import { SESSIONS_DATA } from '../data/playlistData.ts';
 import { downloadStandaloneHtmlReport } from '../utils/exportHtmlHelper.ts';
 
@@ -95,32 +95,34 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
         {/* Content */}
         <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-slate-200 text-sm">
           {/* Solution Box: Why other people cannot open Cloud Run & How to fix */}
-          <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/40 space-y-3">
-            <div className="flex items-center gap-2 text-emerald-300 font-bold text-xs">
-              <Globe className="w-4 h-4 text-emerald-400" />
-              <span>💡 팀원에게 링크가 안 열릴 때 (Google 계정 보안 권한 해결책)</span>
-            </div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Google AI Studio의 Cloud Run 웹 주소(<code className="bg-slate-950 px-1 py-0.5 rounded text-cyan-300 font-mono text-[11px]">*.run.app</code>)는 구글 클라우드 조직 권한이 없는 외부 인원이 접근하면 <strong>로그인 요구 화면</strong>이나 <strong>403/404 차단</strong>이 발생할 수 있습니다.
-            </p>
-            
-            {/* 1-Click Offline Standalone HTML Download */}
-            <div className="pt-2 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <strong className="text-xs text-emerald-300 block">가장 확실한 100% 공유 방법:</strong>
-                <span className="text-[11px] text-slate-400">
-                  9대 세션 녹취록, 도식화, 분석 전체가 포함된 단일 HTML 파일로 전송
-                </span>
+          {!IS_STATIC_SITE && (
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/40 space-y-3">
+              <div className="flex items-center gap-2 text-emerald-300 font-bold text-xs">
+                <Globe className="w-4 h-4 text-emerald-400" />
+                <span>💡 팀원에게 링크가 안 열릴 때 (Google 계정 보안 권한 해결책)</span>
               </div>
-              <button
-                onClick={downloadStandaloneHtmlReport}
-                className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition-all cursor-pointer shrink-0"
-              >
-                <Download className="w-4 h-4" />
-                <span>단독 HTML 파일 다운로드</span>
-              </button>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Google AI Studio의 Cloud Run 웹 주소(<code className="bg-slate-950 px-1 py-0.5 rounded text-cyan-300 font-mono text-[11px]">*.run.app</code>)는 구글 클라우드 조직 권한이 없는 외부 인원이 접근하면 <strong>로그인 요구 화면</strong>이나 <strong>403/404 차단</strong>이 발생할 수 있습니다.
+              </p>
+
+              {/* 1-Click Offline Standalone HTML Download */}
+              <div className="pt-2 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <strong className="text-xs text-emerald-300 block">가장 확실한 100% 공유 방법:</strong>
+                  <span className="text-[11px] text-slate-400">
+                    9대 세션 녹취록, 도식화, 분석 전체가 포함된 단일 HTML 파일로 전송
+                  </span>
+                </div>
+                <button
+                  onClick={downloadStandaloneHtmlReport}
+                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition-all cursor-pointer shrink-0"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>단독 HTML 파일 다운로드</span>
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Primary Share URL Box */}
           <div className="space-y-2">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AI_ENABLED } from '../utils/urlHelper.ts';
+import { AI_ENABLED, IS_STATIC_SITE } from '../utils/urlHelper.ts';
 import {
   X,
   Copy,
@@ -63,14 +63,16 @@ export const AdoptionPlaybookModal: React.FC<AdoptionPlaybookModalProps> = ({
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={downloadStandaloneHtmlReport}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition-all shadow-md shadow-orange-600/20 cursor-pointer"
-              title="플레이북이 포함된 전체 단일 HTML 파일 다운로드"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>플레이북 HTML 저장</span>
-            </button>
+            {!IS_STATIC_SITE && (
+              <button
+                onClick={downloadStandaloneHtmlReport}
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition-all shadow-md shadow-orange-600/20 cursor-pointer"
+                title="플레이북이 포함된 전체 단일 HTML 파일 다운로드"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>플레이북 HTML 저장</span>
+              </button>
+            )}
             <button
               onClick={onClose}
               className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"

@@ -1,8 +1,9 @@
 /**
- * AI Q&A needs the Express server (/api/chat). Static builds (GitHub Pages)
- * set VITE_STATIC_SITE=true to hide every AI entry point.
+ * Static builds (GitHub Pages) set VITE_STATIC_SITE=true.
+ * There they hide AI Q&A (needs the Express /api server) and HTML download.
  */
-export const AI_ENABLED = import.meta.env.VITE_STATIC_SITE !== 'true';
+export const IS_STATIC_SITE = import.meta.env.VITE_STATIC_SITE === 'true';
+export const AI_ENABLED = !IS_STATIC_SITE;
 
 /**
  * Utility to get the public, shareable URL for the application.
