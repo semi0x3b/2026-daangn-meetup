@@ -36,7 +36,7 @@ export const CustomUrlModal: React.FC<CustomUrlModalProps> = ({ isOpen, onClose 
       const data = await response.json();
       setResult(data.summary || '요약 결과를 생성하지 못했습니다.');
     } catch (err: any) {
-      setResult(`⚠️ 오류: ${err.message}`);
+      setResult(`오류: ${err.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -61,7 +61,7 @@ export const CustomUrlModal: React.FC<CustomUrlModalProps> = ({ isOpen, onClose 
             </div>
             <div>
               <h3 className="text-base font-bold text-white">커스텀 YouTube URL 요약기</h3>
-              <p className="text-xs text-slate-400">화면·음성 통합 멀티모달 분석</p>
+              <p className="text-xs text-slate-400">화면·음성 분석</p>
             </div>
           </div>
           <button
@@ -90,7 +90,7 @@ export const CustomUrlModal: React.FC<CustomUrlModalProps> = ({ isOpen, onClose 
 
             <div>
               <label className="block text-xs font-semibold text-slate-300 mb-1">
-                분석 지침 및 포커스 (선택 사항)
+                분석 지침 (선택)
               </label>
               <input
                 type="text"
@@ -114,7 +114,7 @@ export const CustomUrlModal: React.FC<CustomUrlModalProps> = ({ isOpen, onClose 
               ) : (
                 <>
                   <Sparkles className="w-4 h-4" />
-                  <span>화면·음성 통합 분석 시작</span>
+                  <span>화면·음성 분석 시작</span>
                 </>
               )}
             </button>

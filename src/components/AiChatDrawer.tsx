@@ -31,7 +31,7 @@ export const AiChatDrawer: React.FC<AiChatDrawerProps> = ({
     {
       id: 'welcome-1',
       sender: 'assistant',
-      text: `안녕하세요! **2026 당근 SRE Day AI 어시스턴트**입니다. 🥕\n\n플레이리스트(PLVJW6xP-wT5Q)의 9개 세션에 대해 **화면(아키텍처·코드·지표)**과 **음성(발표 맥락·트러블슈팅·정량 성과)**을 바탕으로 무엇이든 답변해 드립니다.\n\n궁금한 세션을 선택하거나 아래 추천 질문을 눌러보세요!`,
+      text: `안녕하세요! **2026 당근 SRE Day AI 어시스턴트**입니다.\n\n플레이리스트(PLVJW6xP-wT5Q)의 9개 세션에 대해 **화면(아키텍처·코드·지표)**과 **음성(발표 맥락·트러블슈팅·정량 성과)**을 바탕으로 질문에 답변해 드립니다.\n\n궁금한 세션을 선택하거나 아래 추천 질문을 눌러보세요!`,
       timestamp: '방금 전',
     },
   ]);
@@ -99,7 +99,7 @@ export const AiChatDrawer: React.FC<AiChatDrawerProps> = ({
         {
           id: `bot-err-${Date.now()}`,
           sender: 'assistant',
-          text: `⚠️ 답변 생성 중 오류가 발생했습니다: ${err.message || '네트워크 오류'}`,
+          text: `답변 생성 중 오류가 발생했습니다: ${err.message || '네트워크 오류'}`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
@@ -138,7 +138,7 @@ export const AiChatDrawer: React.FC<AiChatDrawerProps> = ({
             </div>
             <div>
               <h3 className="text-sm font-bold text-white">당근 SRE Day AI 아키텍트 Q&A</h3>
-              <p className="text-[11px] text-slate-400">화면·음성 지식 기반 실시간 심층 문답</p>
+              <p className="text-[11px] text-slate-400">화면·음성 내용 기반 질의응답</p>
             </div>
           </div>
           <button
@@ -157,7 +157,7 @@ export const AiChatDrawer: React.FC<AiChatDrawerProps> = ({
             onChange={(e) => setCurrentSessionId(e.target.value)}
             className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-orange-500"
           >
-            <option value="">전체 9개 세션 통합 질문</option>
+            <option value="">전체 9개 세션 대상 질문</option>
             {SESSIONS_DATA.map((s) => (
               <option key={s.id} value={s.id}>
                 세션 {s.index}. {s.title}
@@ -222,7 +222,7 @@ export const AiChatDrawer: React.FC<AiChatDrawerProps> = ({
               </div>
               <div className="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 flex items-center gap-2">
                 <RefreshCw className="w-4 h-4 text-orange-400 animate-spin" />
-                <span className="text-xs text-slate-400">당근 SRE 지식 베이스 검색 및 추론 중...</span>
+                <span className="text-xs text-slate-400">답변을 작성하는 중...</span>
               </div>
             </div>
           )}

@@ -34,10 +34,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
 
   const publicUrl = getPublicShareUrl();
 
-  const slackText = `🥕 [2026 당근 SRE Day 실전 플레이북 & 9대 세션 통합 요약]
+  const slackText = `[2026 당근 SRE Day 플레이북·9개 세션 요약]
 대규모 트래픽을 지탱하는 당근 SRE/플랫폼 엔지니어들의 9개 세션 전체 녹취록, 슬라이드 화면 분석, 마스터 아키텍처 토폴로지 대시보드입니다.
 
-🔗 바로가기: ${publicUrl}
+바로가기: ${publicUrl}
 • 주요 내용: CI 캐시 99.4%, AI Agent MCP 배포, Karpenter v1.0, TPU 슬라이스 최적화, Grafana 대체 AI 옵저버빌리티, eBPF 커널 계측, OIDC 정적 키 제거, Valkey 8.0 마이그레이션, GitHub EMU`;
 
   const handleCopyMain = () => {
@@ -53,7 +53,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
   };
 
   const handleCopySession = (sessionTitle: string, index: number) => {
-    const sessionShareText = `🥕 [당근 SRE Day 세션 ${index}] ${sessionTitle}\n${publicUrl}`;
+    const sessionShareText = `[당근 SRE Day 세션 ${index}] ${sessionTitle}\n${publicUrl}`;
     navigator.clipboard.writeText(sessionShareText);
     setCopiedSessionId(`session-${index}`);
     setTimeout(() => setCopiedSessionId(null), 2000);
@@ -73,14 +73,14 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
             </div>
             <div>
               <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                공유하기 및 팀원 전달
+                공유하기
                 <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3" />
-                  100% 열람 보장
+                  링크 공유
                 </span>
               </h2>
               <p className="text-xs text-slate-400">
-                동료 엔지니어 및 팀원들에게 플레이북과 아키텍처를 공유하는 방법입니다.
+                팀원에게 플레이북과 아키텍처를 공유하는 방법입니다.
               </p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
             <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/40 space-y-3">
               <div className="flex items-center gap-2 text-emerald-300 font-bold text-xs">
                 <Globe className="w-4 h-4 text-emerald-400" />
-                <span>💡 팀원에게 링크가 안 열릴 때 (Google 계정 보안 권한 해결책)</span>
+                <span>팀원에게 링크가 열리지 않을 때</span>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
                 Google AI Studio의 Cloud Run 웹 주소(<code className="bg-slate-950 px-1 py-0.5 rounded text-cyan-300 font-mono text-[11px]">*.run.app</code>)는 구글 클라우드 조직 권한이 없는 외부 인원이 접근하면 <strong>로그인 요구 화면</strong>이나 <strong>403/404 차단</strong>이 발생할 수 있습니다.
@@ -108,9 +108,9 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
               {/* 1-Click Offline Standalone HTML Download */}
               <div className="pt-2 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <strong className="text-xs text-emerald-300 block">가장 확실한 100% 공유 방법:</strong>
+                  <strong className="text-xs text-emerald-300 block">권장 공유 방법:</strong>
                   <span className="text-[11px] text-slate-400">
-                    9대 세션 녹취록, 도식화, 분석 전체가 포함된 단일 HTML 파일로 전송
+                    9개 세션 녹취록, 도식, 분석이 모두 담긴 단일 HTML 파일로 전송
                   </span>
                 </div>
                 <button

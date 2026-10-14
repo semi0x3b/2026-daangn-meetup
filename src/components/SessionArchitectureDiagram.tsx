@@ -186,13 +186,13 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2.5">
               <span className="px-3 py-1 rounded-lg text-xs font-bold bg-orange-500/15 text-orange-400 border border-orange-500/30">
-                세션 {session.index} 실무 인프라 아키텍처
+                세션 {session.index} 인프라 아키텍처
               </span>
               <span className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
                 {session.category}
               </span>
               <span className="px-2.5 py-1 rounded-lg text-xs font-mono text-slate-300 bg-slate-950 border border-slate-800">
-                ✓ 9대 세션 전수 실측 완료
+                ✓ 9개 세션 분석 기반
               </span>
             </div>
             <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
@@ -234,7 +234,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             }`}
           >
             <Layers className="w-4 h-4 text-white" />
-            <span>🗺️ 실전 시스템 토폴로지 & 노드 인스펙터</span>
+            <span>시스템 토폴로지·노드 인스펙터</span>
           </button>
 
           <button
@@ -246,7 +246,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             }`}
           >
             <RefreshCw className="w-4 h-4" />
-            <span>⚖️ 기존 한계 vs 당근 개선 비교</span>
+            <span>기존 한계 vs 당근 개선</span>
           </button>
 
           <button
@@ -258,7 +258,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             }`}
           >
             <Zap className="w-4 h-4" />
-            <span>⚡ 5단계 엔지니어링 실행 파이프라인</span>
+            <span>5단계 실행 파이프라인</span>
           </button>
 
           <button
@@ -270,7 +270,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             }`}
           >
             <Cpu className="w-4 h-4" />
-            <span>🛠️ 핵심 컴포넌트 실무 스펙 테이블</span>
+            <span>핵심 컴포넌트 스펙 표</span>
           </button>
 
           <button
@@ -282,7 +282,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             }`}
           >
             <Terminal className="w-4 h-4" />
-            <span>💻 다이어그램 코드 & ASCII 전체보기</span>
+            <span>다이어그램 코드·ASCII</span>
           </button>
         </div>
       </div>
@@ -300,13 +300,13 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                 </div>
                 <div>
                   <h4 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
-                    <span>당근 SRE 실전 시스템 토폴로지</span>
+                    <span>당근 SRE 시스템 토폴로지</span>
                     <span className="text-xs font-semibold text-orange-400 bg-orange-500/10 border border-orange-500/30 px-2.5 py-0.5 rounded-md">
                       노드를 클릭하면 아래에 세부 스펙 표시됨
                     </span>
                   </h4>
                   <p className="text-sm text-slate-300 mt-0.5">
-                    전체 {arch.nodes.length}개 노드와 {arch.edges.length}개 데이터 흐름 경로가 실측 매핑되어 있습니다.
+                    전체 {arch.nodes.length}개 노드와 {arch.edges.length}개 데이터 흐름 경로를 표시합니다.
                   </p>
                 </div>
               </div>
@@ -443,7 +443,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                         <div className="space-y-2.5 pt-3 border-t border-slate-800/80">
                           {node.spec && (
                             <div className="text-xs font-mono text-slate-200 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center justify-between">
-                              <span>⚙️ {node.spec}</span>
+                              <span>{node.spec}</span>
                             </div>
                           )}
 
@@ -514,7 +514,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
               <div className="flex items-center justify-between mb-3">
                 <h4 className="text-xs font-bold text-slate-300 flex items-center gap-2">
                   <Zap className="w-4 h-4 text-amber-400" />
-                  <span>데이터 & 제어 통신 파이프라인 (연결된 네트워크 프로토콜)</span>
+                  <span>데이터·제어 통신 경로 (네트워크 프로토콜)</span>
                 </h4>
                 <span className="text-[11px] text-slate-500 font-mono">총 {arch.edges.length}개 트래픽 링크</span>
               </div>
@@ -672,7 +672,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                   <Lightbulb className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-sm font-bold text-orange-400 mb-1">
-                      💡 당근 SRE 현장 트러블슈팅 경험담 & 장애 방지 가드레일:
+                      현장 트러블슈팅 경험과 장애 방지 가드레일:
                     </h5>
                     <p className="text-sm text-slate-200 leading-relaxed">
                       {selectedNodeSpec.sreProductionTip}
@@ -687,7 +687,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
                   <div className="px-5 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
                     <div className="flex items-center gap-2 text-sm font-bold text-white">
                       <Code2 className="w-4 h-4 text-orange-400" />
-                      <span>실전 프로덕션 설정 코드: {selectedNodeSpec.productionConfigTitle}</span>
+                      <span>프로덕션 설정 코드: {selectedNodeSpec.productionConfigTitle}</span>
                     </div>
 
                     <button
@@ -764,7 +764,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
             <div className="space-y-2.5 pt-2">
               <h5 className="text-xs font-bold text-slate-400 uppercase tracking-wider font-mono">
-                달성한 정량적 성과 & 엔지니어링 개선:
+                달성한 정량 성과:
               </h5>
               <ul className="space-y-2.5">
                 {arch.afterArchitecture.improvements.map((item, idx) => (
@@ -789,7 +789,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             <div>
               <h4 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
                 <Zap className="w-5 h-5 text-orange-400" />
-                <span>엔지니어링 실행 파이프라인 (5단계 완전 분해)</span>
+                <span>실행 파이프라인 (5단계)</span>
               </h4>
               <p className="text-sm text-slate-300 mt-1">
                 요청 유입부터 실제 최적화 로직 및 완료까지 단계별 소요 시간과 처리 메트릭입니다.
@@ -820,7 +820,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
 
                 {step.durationOrMetric && (
                   <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-700 whitespace-nowrap self-start sm:self-center">
-                    ⏱️ {step.durationOrMetric}
+                    {step.durationOrMetric}
                   </span>
                 )}
               </div>
@@ -836,7 +836,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             <div>
               <h4 className="text-base sm:text-lg font-extrabold text-white flex items-center gap-2">
                 <Cpu className="w-5 h-5 text-orange-400" />
-                <span>핵심 기술 컴포넌트 실무 구성표</span>
+                <span>핵심 기술 컴포넌트 구성표</span>
               </h4>
               <p className="text-sm text-slate-300 mt-1">
                 실제 프로덕션 환경에 배포된 스펙, 라이브러리 버전, 파라미터 구성 내역입니다.
@@ -877,7 +877,7 @@ export const SessionArchitectureDiagram: React.FC<SessionArchitectureDiagramProp
             <div className="flex items-center justify-between pb-3.5 border-b border-slate-800">
               <div className="flex items-center gap-2 text-sm font-bold text-white">
                 <Terminal className="w-4 h-4 text-orange-400" />
-                <span>ASCII 아키텍처 다이어그램 (터미널 & 텍스트 문서용)</span>
+                <span>ASCII 아키텍처 다이어그램 (터미널·텍스트 문서용)</span>
               </div>
               <button
                 onClick={handleCopyAscii}
